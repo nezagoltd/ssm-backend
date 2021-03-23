@@ -1,0 +1,9 @@
+{
+  "name": "ssm-backend",
+  "version": "1.0.0",
+  "description": "This is a social saving management system",
+  "main": "app.js",
+  "repository": "https://github.com/nezago/ssm-backend.git",
+  "author": "descholar-ceo <emmanuellamugi@gmail.com>",
+  "license": "MIT"
+}
