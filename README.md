@@ -1,0 +1,1 @@
+# SSM (Social Saving Management) system
