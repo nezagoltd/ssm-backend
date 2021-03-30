@@ -17,8 +17,6 @@
     "seed": "npx sequelize-cli db:seed:all",
     "undo-seed": "npx sequelize-cli db:seed:undo",
     "test": "NODE_ENV=test && nyc mocha --require @babel/register ./tests/**/*.test.js --timeout 30000 --exit",
-    "pretest": "NODE_ENV=test && yarn drop-db && yarn create-db && yarn migrations && yarn seed ",
-    "posttest": "NODE_ENV=test && yarn undo-seed && yarn undo",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "dependencies": {
