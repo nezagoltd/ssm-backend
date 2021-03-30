@@ -1,2 +1,2 @@
 # SSM (Social Saving Management) system
-[![Build Status](https://travis-ci.com/nezago/ssm-backend.svg?branch=develop)](https://travis-ci.com/nezago/ssm-backend)
+[![Build Status](https://travis-ci.com/nezago/ssm-backend.svg?branch=develop)](https://travis-ci.com/nezago/ssm-backend) [![Maintainability](https://api.codeclimate.com/v1/badges/acd87f4c345760e5f025/maintainability)](https://codeclimate.com/github/nezago/ssm-backend/maintainability)
