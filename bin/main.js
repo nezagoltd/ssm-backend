@@ -24,4 +24,4 @@ const server = app.listen(port, () => {
   console.log(`Listening on port ${server.address().port}`);
 });
 
-export default app;
+export default server;
