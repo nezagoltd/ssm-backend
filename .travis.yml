@@ -12,11 +12,11 @@ before_script:
 install:
   - yarn
 
-# script:
-#   - yarn test
+script:
+  - yarn test
  
-# notification:
-#   - email: false
+notification:
+  - email: false
 
-# after_success:
-#   - yarn run coverage
+after_success:
+  - yarn run coverage
