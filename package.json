@@ -5,5 +5,49 @@
   "main": "app.js",
   "repository": "https://github.com/nezago/ssm-backend.git",
   "author": "descholar-ceo <emmanuellamugi@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "eslint-f": "npx eslint . --fix",
+    "start": "babel-node ./bin/main.js",
+    "dev": "nodemon --exec babel-node ./bin/main.js",
+    "create-db": "npx sequelize-cli db:create",
+    "drop-db": "npx sequelize-cli db:drop",
+    "migrations": "npx sequelize-cli db:migrate",
+    "undo": "npx sequelize-cli db:migrate:undo:all",
+    "seed": "npx sequelize-cli db:seed:all",
+    "undo-seed": "npx sequelize-cli db:seed:undo",
+    "test": "NODE_ENV=test && nyc mocha --require @babel/register ./tests/**/*.test.js --timeout 30000 --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "dependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/node": "^7.13.13",
+    "babel-node": "^0.0.1-security",
+    "coveralls": "^3.1.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.6.2",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/node": "^7.13.13",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/register": "^7.13.14",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "mocha": "^8.3.2",
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0",
+    "sequelize-cli": "^6.2.0"
+  }
 }

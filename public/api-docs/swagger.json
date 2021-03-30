@@ -1,0 +1,23 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Social Saving Management API documentation",
+    "description": "The SSM is an application which enables saving groups to manage their savings at social level. It is a transaction based system where different transactions performed are tracked and therefore update of member's accounts",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "ssm-backend.herokuapp.com",
+  "basePath": "/api",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ]
+}
