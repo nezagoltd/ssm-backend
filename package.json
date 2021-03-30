@@ -7,7 +7,10 @@
   "author": "descholar-ceo <emmanuellamugi@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.6.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
