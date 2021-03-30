@@ -6,7 +6,9 @@
   "repository": "https://github.com/nezago/ssm-backend.git",
   "author": "descholar-ceo <emmanuellamugi@gmail.com>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.23.0",
