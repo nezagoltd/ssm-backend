@@ -1,1 +1,2 @@
 /app/models/index.js
+/db/migrate/*.js
