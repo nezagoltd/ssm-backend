@@ -17,8 +17,12 @@
 > Features : // List of features, what a user will be able to do with this project. Eg: a user can signup
 
 ## Deployments
-	* Live demo link //The link of deplyoment of your project
-	* Documentation link //Link to documentation of this project
+	### Live demo link
+		:point_right: App in staging: [ssm-backend-staging](https://ssm-backend-staging.herokuapp.com/)
+		:point_right: App in production: [ssm-backend-production](https://ssm-backend-production.herokuapp.com/)
+	### API Documentation link
+		:point_right: APIs in staging: [ssm-backend-staging](https://ssm-backend-staging.herokuapp.com/public/api-docs/)
+		:point_right: APIs in production: [ssm-backend-production](https://ssm-backend-production.herokuapp.com/public/api-docs/)
 
 ## API Endpoints Specifications
 > If this project is a backend project which exposes some APIs. List all APIs here
