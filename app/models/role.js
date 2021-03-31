@@ -1,16 +1,16 @@
-const {
-  Model,
-} = require('sequelize');
+import { Model } from 'sequelize';
 
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
+  /**
+   * @class
+   */
   class Role extends Model {
     /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
+     * @param {object} models
+     * @returns {void}
+     * @description this is where we define asociation
      */
     static associate(models) {
-      // define association here
       Role.hasMany(models.UserRole, {
         foreignKey: 'roleId',
         onDelete: 'CASCADE',
@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
+
   Role.init({
     name: DataTypes.STRING,
   }, {

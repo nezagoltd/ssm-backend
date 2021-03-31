@@ -1,13 +1,14 @@
-const {
-  Model,
-} = require('sequelize');
+import { Model } from 'sequelize';
 
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
+/**
+ * @class
+ */
   class User extends Model {
     /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
+     * @param {object} models
+     * @returns {void}
+     * @description we define associations here
      */
     static associate(models) {
       // define association here
