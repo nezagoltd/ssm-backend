@@ -9,10 +9,10 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "ssm-backend.herokuapp.com",
+  "host": "ssm-backend-staging.herokuapp.com",
   "basePath": "/api",
   "schemes": [
-    "https"
+    "https", "http"
   ],
   "consumes": [
     "application/json"
