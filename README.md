@@ -18,11 +18,11 @@
 
 ## Deployments
 ### Live demo link
-:point_right: App in staging: [ssm-backend-staging](https://ssm-backend-staging.herokuapp.com/)
-:point_right: App in production: [ssm-backend-production](https://ssm-backend-production.herokuapp.com/)
+- App in staging: [ssm-backend-staging](https://ssm-backend-staging.herokuapp.com/)
+- App in production: [ssm-backend-production](https://ssm-backend-production.herokuapp.com/)
 ### API Documentation link
-:point_right: APIs in staging: [APIs in staging](https://ssm-backend-staging.herokuapp.com/public/api-docs/)
-:point_right: APIs in production: [APIs in production](https://ssm-backend-production.herokuapp.com/public/api-docs/)
+- APIs in staging: [APIs in staging](https://ssm-backend-staging.herokuapp.com/public/api-docs/)
+- APIs in production: [APIs in production](https://ssm-backend-production.herokuapp.com/public/api-docs/)
 
 ## API Endpoints Specifications
 > If this project is a backend project which exposes some APIs. List all APIs here
