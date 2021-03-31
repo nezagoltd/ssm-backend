@@ -11,6 +11,8 @@ const {
   SUPERADMIN_EMAIL,
 } = process.env;
 
+const { User, Role } = models;
+
 /**
  * @description It prepares superadmin data
  * @returns {object} adminDataObject
@@ -28,15 +30,25 @@ const superadminPrepare = async () => {
   return superadminData;
 };
 
-const { User } = models;
+/**
+ * @description It prepares superadmin role
+ * @returns {object} superadmin data
+ */
+const superadminRolePrepare = () => ({ name: 'super-admin' });
+
+/**
+ * @description It prepares superadmin association data
+ * @returns {object} association data
+ */
+const superadminAssociationRolePrepare = () => {};
+
 /**
    * @description Saves superuser object in the database
-  //  * @param {object} superadminData User data to save to the database
-   * @returns {object} dataValues User object that was saved to the database
-    */
+   * @returns {void}
+   */
 const registerAdmin = async () => {
   const dataToInsert = await superadminPrepare();
-  const { dataValues } = await User.create(
+  await User.create(
     dataToInsert,
     {
       fields: [
@@ -48,8 +60,24 @@ const registerAdmin = async () => {
       ],
     },
   );
-  return dataValues;
+};
+
+/**
+  * @description Saves superuser object in the database
+  * @returns {void}
+  */
+const registerSuperadminRole = async () => {
+  const dataToInsert = superadminRolePrepare();
+  await Role.create(
+    dataToInsert,
+    {
+      fields: [
+        'name',
+      ],
+    },
+  );
 };
 
 registerAdmin();
+registerSuperadminRole();
 export default registerAdmin;
