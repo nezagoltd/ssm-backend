@@ -131,4 +131,3 @@ const createSuperuser = async () => {
 };
 
 createSuperuser();
-export default registerAdmin;
