@@ -11,7 +11,7 @@ const {
   SUPERADMIN_EMAIL,
 } = process.env;
 
-const { User, Role } = models;
+const { User, Role, UserRole } = models;
 
 /**
  * @description It prepares superadmin data
@@ -35,12 +35,6 @@ const superadminPrepare = async () => {
  * @returns {object} superadmin data
  */
 const superadminRolePrepare = () => ({ name: 'super-admin' });
-
-/**
- * @description It prepares superadmin association data
- * @returns {object} association data
- */
-const superadminAssociationRolePrepare = () => {};
 
 /**
    * @description Saves superuser object in the database
@@ -78,6 +72,51 @@ const registerSuperadminRole = async () => {
   );
 };
 
-registerAdmin();
-registerSuperadminRole();
+/**
+ * @description It prepares superadmin association data
+ * @returns {object} association data
+ */
+const superadminAssociationRolePrepare = async () => {
+  const superuserData = await User.findOne({ where: { email: SUPERADMIN_EMAIL } });
+  const superuserRole = await Role.findOne({ where: { name: 'super-admin' } });
+  if (superuserData === null) {
+    registerAdmin();
+  }
+  if (superuserRole === null) {
+    registerSuperadminRole();
+  }
+  return {
+    userId: superuserData.id,
+    roleId: superuserRole.id,
+  };
+};
+
+/**
+  * @description Saves superuser object in the database
+  * @returns {void}
+  */
+const superadminAssociateWithHisRole = async () => {
+  const dataToInsert = await superadminAssociationRolePrepare();
+  await UserRole.create(
+    dataToInsert,
+    {
+      fields: [
+        'userId',
+        'roleId',
+      ],
+    },
+  );
+};
+
+/**
+ * @description It creates a superuser
+ * @returns{void}
+ */
+const createSuperuser = async () => {
+  await registerAdmin();
+  await registerSuperadminRole();
+  await superadminAssociateWithHisRole();
+};
+
+createSuperuser();
 export default registerAdmin;
