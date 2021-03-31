@@ -42,18 +42,22 @@ const superadminRolePrepare = () => ({ name: 'super-admin' });
    */
 const registerAdmin = async () => {
   const dataToInsert = await superadminPrepare();
-  await User.create(
-    dataToInsert,
-    {
-      fields: [
-        'firstName',
-        'lastName',
-        'email',
-        'password',
-        'isConfirmed',
-      ],
-    },
-  );
+  try {
+    await User.create(
+      dataToInsert,
+      {
+        fields: [
+          'firstName',
+          'lastName',
+          'email',
+          'password',
+          'isConfirmed',
+        ],
+      },
+    );
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
 /**
@@ -62,14 +66,18 @@ const registerAdmin = async () => {
   */
 const registerSuperadminRole = async () => {
   const dataToInsert = superadminRolePrepare();
-  await Role.create(
-    dataToInsert,
-    {
-      fields: [
-        'name',
-      ],
-    },
-  );
+  try {
+    await Role.create(
+      dataToInsert,
+      {
+        fields: [
+          'name',
+        ],
+      },
+    );
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
 /**
@@ -97,15 +105,19 @@ const superadminAssociationRolePrepare = async () => {
   */
 const superadminAssociateWithHisRole = async () => {
   const dataToInsert = await superadminAssociationRolePrepare();
-  await UserRole.create(
-    dataToInsert,
-    {
-      fields: [
-        'userId',
-        'roleId',
-      ],
-    },
-  );
+  try {
+    await UserRole.create(
+      dataToInsert,
+      {
+        fields: [
+          'userId',
+          'roleId',
+        ],
+      },
+    );
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
 /**
