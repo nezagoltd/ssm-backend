@@ -11,7 +11,6 @@ export default (sequelize, DataTypes) => {
      * @description we define associations here
      */
     static associate(models) {
-      // define association here
       UserRole.belongsTo(models.User, {
         foreignKey: 'userId',
       });
