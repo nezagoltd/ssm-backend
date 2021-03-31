@@ -16,6 +16,7 @@
     "db:rollback": "npx sequelize-cli db:migrate:undo:all",
     "db:seed": "npx sequelize-cli db:seed:all",
     "db:seed:rollback": "npx sequelize-cli db:seed:undo",
+    "db:superadmin": "babel-node ./bin/superadmin.js",
     "test": "NODE_ENV=test && nyc mocha --require @babel/register ./tests/**/*.test.js --timeout 30000 --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
