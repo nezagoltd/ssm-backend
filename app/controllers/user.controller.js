@@ -10,14 +10,44 @@ class UserController {
     this.service = service;
   }
 
-  all = () => {}
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description GET: /users
+   */
+  all = (req, res) => {}
 
-  create = () => {}
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description POST: /users
+   */
+  create = (req, res) => {}
 
-  show = () => {}
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description GET: /users/userId
+   */
+  show = (req, res) => {}
 
-  update = () => {}
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description PATCH: /users/userId
+   */
+  update = (req, res) => {}
 
-  delete = () => {}
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description DELETE: /users/userId
+   */
+  delete = (req, res) => {}
 }
 export default UserController;
