@@ -17,4 +17,4 @@ class UserRoleService extends DataCable {
   }
 }
 
-export default new UserRoleService();
+export default UserRoleService;

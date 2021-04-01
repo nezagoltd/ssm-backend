@@ -17,4 +17,4 @@ class UserService extends DataCable {
   }
 }
 
-export default new UserService();
+export default UserService;
