@@ -1,4 +1,24 @@
 /**
+     *@param {object} expectedInput
+     *@param {object} givenInput
+     *@returns {object} filteredInput
+     *@description {object} it filters the passed input from the frontend to avoid
+     * unnecessary passed data which may be sent by attackers to break the system
+     */
+const removeUnexpectedInput = (expectedInput, givenInput) => {
+  const inputKeys = Object.keys(givenInput);
+  const filteredInputs = {};
+
+  inputKeys.forEach((currKey) => {
+    if (expectedInput.includes(currKey)) {
+      filteredInputs[currKey] = givenInput[currKey];
+    }
+  });
+
+  return filteredInputs;
+};
+
+/**
  * @class
  * @classdesc this class DataCable contains Create, Read, Update, methods which work with
  * database immediately, it can be extended or called from services, controllers, or routes
@@ -20,7 +40,7 @@ class DataCable {
      */
   saveAll = async (inputData) => {
     const tableFields = Object.keys(this.model.rawAttributes);
-    const acceptedSave = this.removeUnexpectedInput(tableFields, inputData);
+    const acceptedSave = removeUnexpectedInput(tableFields, inputData);
     const savedData = await this.model.create(acceptedSave);
     return savedData;
   }
@@ -67,7 +87,7 @@ class DataCable {
    */
   updateBy = async (dataToUpdate, whereCondition) => {
     const tableFields = Object.keys(this.model.rawAttributes);
-    const validDataToUpdate = this.removeUnexpectedInput(tableFields, dataToUpdate);
+    const validDataToUpdate = removeUnexpectedInput(tableFields, dataToUpdate);
     const updatedData = await this.model.update(validDataToUpdate, {
       where: whereCondition, returning: true,
     });
@@ -84,26 +104,6 @@ class DataCable {
     const deletedEntry = await this.model.destroy({ where: whereCondition });
     return deletedEntry;
   }
-
-  /**
-     *@param {object} expectedInput
-     *@param {object} givenInput
-     *@returns {object} filteredInput
-     *@description {object} it filters the passed input from the frontend to avoid
-     * unnecessary passed data which may be sent by attackers to break the system
-     */
-     _removeUnexpectedInput = (expectedInput, givenInput) => {
-       const inputKeys = Object.keys(givenInput);
-       const filteredInputs = {};
-
-       inputKeys.forEach((currKey) => {
-         if (expectedInput.includes(currKey)) {
-           filteredInputs[currKey] = givenInput[currKey];
-         }
-       });
-
-       return filteredInputs;
-     }
 }
 
 export default DataCable;

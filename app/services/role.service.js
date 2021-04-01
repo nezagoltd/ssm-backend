@@ -1,7 +1,7 @@
 import DataCable from '../../config/initializers/data.cable';
 import models from '../models';
 
-const { User, Role } = models;
+const { UserRole, Role } = models;
 /**
  * @description this class user service contains all methods regarding creating user
  * updating user, reading user and deleting a user
@@ -13,7 +13,7 @@ class RoleService extends DataCable {
   constructor() {
     super();
     this.model = Role;
-    this.associateTable = [User];
+    this.associateTable = [UserRole];
   }
 }
 
