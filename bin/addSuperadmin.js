@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import models from '../app/models';
+import services from '../app/services';
 import { passwordEncryptor } from '../app/helpers/passwordEncDec.helper';
 
 dotenv.config();
@@ -11,7 +11,7 @@ const {
   SUPERADMIN_EMAIL,
 } = process.env;
 
-const { User, Role, UserRole } = models;
+const { UserRoleServiceInstance, RoleServiceInstance, UserServiceInstance } = services;
 
 /**
  * @description It prepares superadmin data
@@ -43,18 +43,7 @@ const superadminRolePrepare = () => ({ name: 'super-admin' });
 const registerAdmin = async () => {
   const dataToInsert = await superadminPrepare();
   try {
-    await User.create(
-      dataToInsert,
-      {
-        fields: [
-          'firstName',
-          'lastName',
-          'email',
-          'password',
-          'isConfirmed',
-        ],
-      },
-    );
+    await UserServiceInstance.saveAll(dataToInsert);
   } catch (err) {
     throw new Error(err);
   }
@@ -67,14 +56,7 @@ const registerAdmin = async () => {
 const registerSuperadminRole = async () => {
   const dataToInsert = superadminRolePrepare();
   try {
-    await Role.create(
-      dataToInsert,
-      {
-        fields: [
-          'name',
-        ],
-      },
-    );
+    await RoleServiceInstance.saveAll(dataToInsert);
   } catch (err) {
     throw new Error(err);
   }
@@ -85,8 +67,8 @@ const registerSuperadminRole = async () => {
  * @returns {object} association data
  */
 const superadminAssociationRolePrepare = async () => {
-  const superuserData = await User.findOne({ where: { email: SUPERADMIN_EMAIL } });
-  const superuserRole = await Role.findOne({ where: { name: 'super-admin' } });
+  const superuserData = await UserServiceInstance.getBy({ email: SUPERADMIN_EMAIL });
+  const superuserRole = await RoleServiceInstance.getBy({ name: 'super-admin' });
   if (superuserData === null) {
     registerAdmin();
   }
@@ -106,15 +88,7 @@ const superadminAssociationRolePrepare = async () => {
 const superadminAssociateWithHisRole = async () => {
   const dataToInsert = await superadminAssociationRolePrepare();
   try {
-    await UserRole.create(
-      dataToInsert,
-      {
-        fields: [
-          'userId',
-          'roleId',
-        ],
-      },
-    );
+    await UserRoleServiceInstance.saveAll(dataToInsert);
   } catch (err) {
     throw new Error(err);
   }

@@ -2,8 +2,8 @@ import UserService from './user.service';
 import UserRoleService from './userrole.service';
 import RoleService from './role.service';
 
-const UserServiceInstace = new UserService();
-const UserRoleServiceInstace = new UserRoleService();
-const RoleServiceInstace = new RoleService();
+const UserServiceInstance = new UserService();
+const UserRoleServiceInstance = new UserRoleService();
+const RoleServiceInstance = new RoleService();
 
-export default { UserServiceInstace, UserRoleServiceInstace, RoleServiceInstace };
+export default { UserServiceInstance, UserRoleServiceInstance, RoleServiceInstance };
