@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import morgan from 'morgan';
 import routes from '../config/routes';
 
 dotenv.config();
@@ -8,7 +9,7 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(express.json());
-
+app.use(morgan('combined'));
 app.use(express.static(`${__dirname}/public`));
 app.use(routes);
 
