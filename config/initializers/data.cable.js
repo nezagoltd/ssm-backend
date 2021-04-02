@@ -41,8 +41,14 @@ class DataCable {
   saveAll = async (inputData) => {
     const tableFields = Object.keys(this.model.rawAttributes);
     const acceptedSave = removeUnexpectedInput(tableFields, inputData);
-    const savedData = await this.model.create(acceptedSave);
-    return savedData;
+    let results;
+    try {
+      const savedData = await this.model.create(acceptedSave);
+      results = savedData;
+    } catch (err) {
+      throw new Error(err);
+    }
+    return results;
   }
 
   /**
