@@ -3,10 +3,13 @@ import { successCodes, failureCodes } from '../helpers/statusCodes.helper';
 import { sendSuccessResponse, sendErrorResponse } from '../helpers/response.helper';
 import { encryptPassword } from '../helpers/passwordEncDec.helper';
 import { generateToken } from '../helpers/token.helper';
+import { successMessages, errorMessages } from '../helpers/messages.helper';
 
 const { UserServiceInstance } = services;
 const { created } = successCodes;
 const { badRequest } = failureCodes;
+const { accountCreatedTemporary } = successMessages;
+const { accountFailedToCreate } = errorMessages;
 
 /**
  * @description it gets a request and then it extracts user parameters from that request
@@ -46,9 +49,11 @@ class UserController {
     const dataToSave = getUserParams(req);
     const savedUser = await UserServiceInstance.saveAll(dataToSave);
     if (savedUser) {
-      sendSuccessResponse(res, created, 'Account created successfully', generateToken(savedUser), savedUser);
+      sendSuccessResponse(
+        res, created, accountCreatedTemporary, generateToken(savedUser), savedUser,
+      );
     } else {
-      sendErrorResponse(res, badRequest, 'Account was not created');
+      sendErrorResponse(res, badRequest, accountFailedToCreate);
     }
   }
 
