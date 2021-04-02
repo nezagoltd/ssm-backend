@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
 * @returns {string} hashedPassword
 * @description Encrypts a plain-text password
 */
-export const passwordEncryptor = async (password) => {
+export const encryptPassword = async (password) => {
   const salt = await bcrypt.genSalt(14);
   const hashedPassword = await bcrypt.hash(password, salt);
   return hashedPassword;
@@ -18,7 +18,7 @@ export const passwordEncryptor = async (password) => {
    * @returns {bool} boolean
    * @description it returns a boolean about the password matching status
    */
-export const passwordDecryptor = async (currPassword, hashedPassword) => {
+export const decryptPassword = async (currPassword, hashedPassword) => {
   const isPasswordChecked = await bcrypt.compare(currPassword, hashedPassword);
   return isPasswordChecked;
 };

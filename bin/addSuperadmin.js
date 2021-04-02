@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import services from '../app/services';
-import { passwordEncryptor } from '../app/helpers/passwordEncDec.helper';
+import { encryptPassword } from '../app/helpers/passwordEncDec.helper';
 
 dotenv.config();
 
@@ -19,7 +19,7 @@ const { UserRoleServiceInstance, RoleServiceInstance, UserServiceInstance } = se
  *
  */
 const superadminPrepare = async () => {
-  const passcode = await passwordEncryptor(SUPERADMIN_PASSWORD);
+  const passcode = await encryptPassword(SUPERADMIN_PASSWORD);
   const superadminData = {
     firstName: SUPERADMIN_FNAME,
     lastName: SUPERADMIN_LNAME,
