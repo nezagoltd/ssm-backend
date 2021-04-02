@@ -16,11 +16,11 @@ const { accountFailedToCreate } = errorMessages;
  * @param {object} req
  * @returns {object} userParams
  */
-const getUserParams = req => {
+const getUserParams = async req => {
   const {
     firstName, lastName, email, password,
   } = req.body;
-  const encryptedPassword = encryptPassword(password);
+  const encryptedPassword = await encryptPassword(password);
 
   return {
     firstName, lastName, email, password: encryptedPassword,
@@ -46,7 +46,7 @@ class UserController {
    * @description POST: /users
    */
   create = async (req, res) => {
-    const dataToSave = getUserParams(req);
+    const dataToSave = await getUserParams(req);
     const savedUser = await UserServiceInstance.saveAll(dataToSave);
     if (savedUser) {
       sendSuccessResponse(
