@@ -66,7 +66,7 @@ class UserController {
         contentText: verifyEmailContentPlainText,
       });
       sendSuccessResponse(
-        res, created, accountCreatedTemporary, token, savedUser,
+        res, created, accountCreatedTemporary, token, null,
       );
     } else {
       sendErrorResponse(res, badRequest, accountFailedToCreate);
