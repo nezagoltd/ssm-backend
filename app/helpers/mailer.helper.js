@@ -12,8 +12,8 @@ const sendEmail = async (mailData) => {
   const {
     mailSentTo,
     mailSubject,
-    verifyEmailContentPlainText: mailContentText,
-    verifyEmailContentHTML: mailContentHTML,
+    contentText,
+    contentHTML,
   } = mailData;
 
   const { APPLICATION_EMAIL, APPLICATION_EMAIL_PASSWORD } = process.env;
@@ -33,8 +33,8 @@ const sendEmail = async (mailData) => {
     from: APPLICATION_EMAIL,
     to: mailSentTo,
     subject: mailSubject,
-    html: mailContentHTML,
-    text: mailContentText,
+    html: contentHTML,
+    text: contentText,
   };
 
   let isSent;

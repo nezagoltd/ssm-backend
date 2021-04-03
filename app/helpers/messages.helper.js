@@ -52,6 +52,7 @@ export const generateVerifyEmailContent = (userData, token, appURL) => {
   `;
 
   const verifyEmailContentPlainText = `
+    Note: If you cannot see this email properly, please use a browser
     SSM needs you to verify your email address
 
     Hello ${firstName} ${lastName}!

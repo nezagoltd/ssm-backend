@@ -3,7 +3,8 @@ import { successCodes, failureCodes } from '../helpers/statusCodes.helper';
 import { sendSuccessResponse, sendErrorResponse } from '../helpers/response.helper';
 import { encryptPassword } from '../helpers/passwordEncDec.helper';
 import { generateToken } from '../helpers/token.helper';
-import { successMessages, errorMessages } from '../helpers/messages.helper';
+import { successMessages, errorMessages, generateVerifyEmailContent } from '../helpers/messages.helper';
+import sendEmail from '../helpers/mailer.helper';
 
 const { UserServiceInstance } = services;
 const { created } = successCodes;
@@ -47,8 +48,22 @@ class UserController {
    */
   create = async (req, res) => {
     const dataToSave = await getUserParams(req);
+
+    /**
+     * @param {}
+     */
+    const {
+      verifyEmailContentHTML,
+      verifyEmailContentPlainText,
+    } = generateVerifyEmailContent(dataToSave);
     const savedUser = await UserServiceInstance.saveAll(dataToSave);
     if (savedUser) {
+      await sendEmail({
+        mailSentTo: dataToSave.email,
+        mailSubject: 'Verify your email address',
+        contentHTML: verifyEmailContentHTML,
+        contentText: verifyEmailContentPlainText,
+      });
       sendSuccessResponse(
         res, created, accountCreatedTemporary, generateToken(savedUser), savedUser,
       );
