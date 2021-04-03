@@ -46,7 +46,7 @@ export const generateVerifyEmailContent = (userData, token, appURL) => {
       </div>
     </div>
     <footer style="background-color: #c4c4c4; padding: 0.1rem">
-      <p style="text-align: center; font-size: 0.8rem;">© 2021 <a href="">SSM</a>. All rights reserved.</p>
+      <p style="text-align: center; font-size: 0.8rem;">© 2021 <a href="${appURL}">SSM</a>. All rights reserved.</p>
     </footer>
   </div>
   `;

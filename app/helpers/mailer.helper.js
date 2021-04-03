@@ -49,9 +49,9 @@ const sendEmail = async (mailData) => {
       }
       return result;
     });
-  } catch (error) {
+  } catch (err) {
     throw new Error(
-      `Something went wrong in the sendmail method. Error: ${error.message}`,
+      `Something went wrong in the sendmail method. Error: ${err.message}`,
     );
   }
   return isSent;

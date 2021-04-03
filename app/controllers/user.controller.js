@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import services from '../services';
 import { successCodes, failureCodes } from '../helpers/statusCodes.helper';
 import { sendSuccessResponse, sendErrorResponse } from '../helpers/response.helper';
@@ -6,11 +7,14 @@ import { generateToken } from '../helpers/token.helper';
 import { successMessages, errorMessages, generateVerifyEmailContent } from '../helpers/messages.helper';
 import sendEmail from '../helpers/mailer.helper';
 
+dotenv.config();
+
 const { UserServiceInstance } = services;
 const { created } = successCodes;
 const { badRequest } = failureCodes;
 const { accountCreatedTemporary } = successMessages;
 const { accountFailedToCreate } = errorMessages;
+const { APPLICATION_URL } = process.env;
 
 /**
  * @description it gets a request and then it extracts user parameters from that request
@@ -48,20 +52,22 @@ class UserController {
    */
   create = async (req, res) => {
     const dataToSave = await getUserParams(req);
+    const savedUser = await UserServiceInstance.saveAll(dataToSave);
+    const token = generateToken(savedUser);
     const {
       verifyEmailContentHTML,
       verifyEmailContentPlainText,
-    } = generateVerifyEmailContent(dataToSave);
-    const savedUser = await UserServiceInstance.saveAll(dataToSave);
+    } = generateVerifyEmailContent(dataToSave, token, APPLICATION_URL);
     if (savedUser) {
-      await sendEmail({
+      const sendEmailResult = await sendEmail({
         mailSentTo: dataToSave.email,
         mailSubject: 'Verify your email address',
         contentHTML: verifyEmailContentHTML,
         contentText: verifyEmailContentPlainText,
       });
+      console.log({ sendEmailResult });
       sendSuccessResponse(
-        res, created, accountCreatedTemporary, generateToken(savedUser), savedUser,
+        res, created, accountCreatedTemporary, token, savedUser,
       );
     } else {
       sendErrorResponse(res, badRequest, accountFailedToCreate);
