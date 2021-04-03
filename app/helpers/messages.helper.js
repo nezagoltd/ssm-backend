@@ -15,6 +15,7 @@ export const errorMessages = {
  */
 export const generateVerifyEmailContent = (userData, token, appURL) => {
   const { firstName, lastName } = userData;
+  const verifyURL = `${appURL}/users/verify-email?token=${token}`;
   const verifyEmailContentHTML = `
   <div style="width: 70%; margin: 0 auto; font-family: sans-serif;">
     <nav style="background-color: #c4c4c4; padding: 0.1rem;">
@@ -31,9 +32,7 @@ export const generateVerifyEmailContent = (userData, token, appURL) => {
       and password you used and don’t share it with anyone else!</p>
 
       <div style="padding: 1rem 0 1rem 0;">
-        <a
-          href="${appURL}/users/verify-email?token=${token}"
-          style="background-color: #861A02; color: #ffffff; width: 40%; padding: 0.8rem; text-decoration: none; border-radius: 0.2rem;">
+        <a href="${verifyURL}" style="background-color: #861A02; color: #ffffff; width: 40%; padding: 0.8rem; text-decoration: none; border-radius: 0.2rem;">
           Verify email address</a>
       </div>
 
