@@ -48,10 +48,6 @@ class UserController {
    */
   create = async (req, res) => {
     const dataToSave = await getUserParams(req);
-
-    /**
-     * @param {}
-     */
     const {
       verifyEmailContentHTML,
       verifyEmailContentPlainText,

@@ -23,7 +23,9 @@ export default (sequelize, DataTypes) => {
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    isConfirmed: DataTypes.BOOLEAN,
+    isApproved: DataTypes.BOOLEAN,
+    isVerified: DataTypes.BOOLEAN,
+    isActive: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'User',

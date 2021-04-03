@@ -25,7 +25,15 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      isConfirmed: {
+      isApproved: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      isVerified: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      isActive: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },

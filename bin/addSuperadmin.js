@@ -25,7 +25,9 @@ const superadminPrepare = async () => {
     lastName: SUPERADMIN_LNAME,
     email: SUPERADMIN_EMAIL,
     password: passcode,
-    isConfirmed: true,
+    isApproved: true,
+    isVerified: true,
+    isActive: true,
   };
   return superadminData;
 };
