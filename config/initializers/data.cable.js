@@ -89,7 +89,7 @@ class DataCable {
    * @returns {object} updatedData
    * @method
    * @description it gets the data to update as argument and where condition and it returns the
-   * updated data
+   * updated data, whereCondition should be an object, eg: {id:4}
    */
   updateBy = async (dataToUpdate, whereCondition) => {
     const tableFields = Object.keys(this.model.rawAttributes);

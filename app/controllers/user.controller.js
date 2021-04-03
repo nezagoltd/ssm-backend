@@ -3,15 +3,15 @@ import services from '../services';
 import { successCodes, failureCodes } from '../helpers/statusCodes.helper';
 import { sendSuccessResponse, sendErrorResponse } from '../helpers/response.helper';
 import { encryptPassword } from '../helpers/passwordEncDec.helper';
-import { generateToken } from '../helpers/token.helper';
+import { decodeToken, generateToken } from '../helpers/token.helper';
 import { successMessages, errorMessages, generateVerifyEmailContent } from '../helpers/messages.helper';
 import sendEmail from '../helpers/mailer.helper';
 
 dotenv.config();
 
 const { UserServiceInstance } = services;
-const { created } = successCodes;
-const { badRequest } = failureCodes;
+const { created, ok } = successCodes;
+const { badRequest, internalServerError } = failureCodes;
 const { accountCreatedTemporary } = successMessages;
 const { accountFailedToCreate } = errorMessages;
 const { APPLICATION_URL } = process.env;
@@ -30,6 +30,18 @@ const getUserParams = async req => {
   return {
     firstName, lastName, email, password: encryptedPassword,
   };
+};
+
+/**
+ * @description It finds user from the database
+ * @param {object} token
+ * @param {object} userService
+ * @returns {object} foundUser
+ */
+const setUser = async (token, userService) => {
+  const { id } = decodeToken(token);
+  const foundUser = await userService.getBy({ id });
+  return foundUser;
 };
 
 /**
@@ -82,12 +94,25 @@ class UserController {
   // show = (req, res) => {}
 
   /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description PATCH: /users/userId
-  //  */
-  // update = (req, res) => {}
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description PATCH | GET: /users/userId
+   */
+  update = async (req, res) => {
+    let mUser;
+    if (req.query.token) {
+      mUser = await setUser(req.query.token, UserServiceInstance);
+    }
+    const userUpdateInfo = await UserServiceInstance.updateBy(
+      { isVerified: true }, { id: mUser.id },
+    );
+    if (userUpdateInfo) {
+      sendSuccessResponse(res, ok, 'User updated successfully!', null, userUpdateInfo);
+    } else {
+      sendErrorResponse(res, internalServerError, 'User update failed!');
+    }
+  }
 
   // /**
   //  * @param {object} req

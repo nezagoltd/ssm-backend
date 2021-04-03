@@ -6,5 +6,6 @@ const userRouter = Router();
 const { UserControllerInstance } = controllers;
 
 userRouter.post('/', UserControllerInstance.create);
+userRouter.get('/verify-email', UserControllerInstance.update);
 
 export default userRouter;

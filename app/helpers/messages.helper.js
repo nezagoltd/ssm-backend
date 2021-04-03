@@ -15,7 +15,7 @@ export const errorMessages = {
  */
 export const generateVerifyEmailContent = (userData, token, appURL) => {
   const { firstName, lastName } = userData;
-  const verifyURL = `${appURL}/users/verify-email?token=${token}`;
+  const verifyURL = `${appURL}/api/users/verify-email?token=${token}`;
   const verifyEmailContentHTML = `
   <div style="width: 70%; margin: 0 auto; font-family: sans-serif;">
     <nav style="background-color: #c4c4c4; padding: 0.1rem;">
@@ -62,7 +62,7 @@ export const generateVerifyEmailContent = (userData, token, appURL) => {
     Kindly click the link below, so that we will know that this email belongs to you. Keep in mind that you need to always remember your email
       and password you used and don’t share it with anyone else!
 
-    ${appURL}/users/verify-email?token=${token}
+    ${verifyURL}
 
     If you didn’t register on Social Saving Management system recently, we are sorry for that inconvenience, ignore this email!
 
