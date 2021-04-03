@@ -52,20 +52,19 @@ class UserController {
    */
   create = async (req, res) => {
     const dataToSave = await getUserParams(req);
-    const savedUser = await UserServiceInstance.saveAll(dataToSave);
+    const { dataValues: savedUser } = await UserServiceInstance.saveAll(dataToSave);
     const token = generateToken(savedUser);
     const {
       verifyEmailContentHTML,
       verifyEmailContentPlainText,
     } = generateVerifyEmailContent(dataToSave, token, APPLICATION_URL);
     if (savedUser) {
-      const sendEmailResult = await sendEmail({
+      await sendEmail({
         mailSentTo: dataToSave.email,
         mailSubject: 'Verify your email address',
         contentHTML: verifyEmailContentHTML,
         contentText: verifyEmailContentPlainText,
       });
-      console.log({ sendEmailResult });
       sendSuccessResponse(
         res, created, accountCreatedTemporary, token, savedUser,
       );
