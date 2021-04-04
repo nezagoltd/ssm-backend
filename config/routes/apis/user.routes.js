@@ -4,7 +4,7 @@ import middlewares from '../../../app/middlewares';
 
 const userRouter = Router();
 
-const { UserControllerInstance } = controllers;
+const { UserControllerInstance, UserRoleControllerInstance } = controllers;
 const {
   dataForVerifyEmail,
   respondAfterVerifyingEmail,
@@ -13,6 +13,6 @@ const {
 
 userRouter.post('/', UserControllerInstance.create);
 userRouter.get('/verify-email', dataForVerifyEmail, UserControllerInstance.update, respondAfterVerifyingEmail);
-userRouter.patch('/approve-user/:userId', dataForApprovingUser, UserControllerInstance.update);
+userRouter.patch('/approve-user/:userId', dataForApprovingUser, UserControllerInstance.update, UserRoleControllerInstance.create);
 
 export default userRouter;
