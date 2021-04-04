@@ -5,7 +5,11 @@ module.exports = {
      */
 
     await queryInterface.bulkInsert('roles', [{
-      name: 'super-user',
+      name: 'admin',
+    }], {});
+
+    await queryInterface.bulkInsert('roles', [{
+      name: 'accountant',
     }], {});
   },
 
