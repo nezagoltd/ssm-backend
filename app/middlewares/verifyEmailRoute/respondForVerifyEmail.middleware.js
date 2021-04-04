@@ -11,7 +11,7 @@ const { internalServerError } = failureCodes;
 const { approveEmailAddressToAdmin } = successMessages;
 const { userFailedToUpdate } = errorMessages;
 const {
-  SUPERADMIN_EMAIL, SUPERADMIN_FNAME, SUPERADMIN_LNAME, APPLICATION_URL,
+  SUPERADMIN_EMAIL, SUPERADMIN_FNAME, SUPERADMIN_LNAME, FRONTEND_APP_URL,
 } = process.env;
 
 /**
@@ -28,7 +28,7 @@ const respondAfterVerifyingEmail = async (req, res) => {
       approveUserEmailContentHTML,
       approveUserEmailContentPlainText,
     } = generateApproveEmailContent(
-      { id }, { firstName: SUPERADMIN_FNAME, lastName: SUPERADMIN_LNAME }, APPLICATION_URL,
+      { id }, { firstName: SUPERADMIN_FNAME, lastName: SUPERADMIN_LNAME }, FRONTEND_APP_URL,
     );
     await sendEmail(
       {
