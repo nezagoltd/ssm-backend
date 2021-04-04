@@ -13,6 +13,6 @@ const {
 
 userRouter.post('/', UserControllerInstance.create);
 userRouter.get('/verify-email', dataForVerifyEmail, UserControllerInstance.update, respondAfterVerifyingEmail);
-userRouter.patch('/:userId', dataForApprovingUser);
+userRouter.patch('/:userId', dataForApprovingUser, UserControllerInstance.update);
 
 export default userRouter;
