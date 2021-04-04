@@ -92,10 +92,10 @@ class UserController {
     const { dataToUpdate, whereCondition } = req;
     const userUpdateInfo = await UserServiceInstance.updateBy(dataToUpdate, whereCondition);
     if (userUpdateInfo) {
-      req.statusCode = ok;
+      res.statusCode = ok;
       next();
     } else {
-      req.statusCode = internalServerError;
+      res.statusCode = internalServerError;
       next();
     }
   }
