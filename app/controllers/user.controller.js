@@ -12,8 +12,8 @@ dotenv.config();
 const { UserServiceInstance } = services;
 const { created, ok } = successCodes;
 const { badRequest, internalServerError } = failureCodes;
-const { accountCreatedTemporary } = successMessages;
-const { accountFailedToCreate } = errorMessages;
+const { accountCreatedTemporary, approveEmailAddressToAdmin } = successMessages;
+const { accountFailedToCreate, userFailedToUpdate } = errorMessages;
 const { APPLICATION_URL } = process.env;
 
 /**
@@ -108,9 +108,9 @@ class UserController {
       { isVerified: true }, { id: mUser.id },
     );
     if (userUpdateInfo) {
-      sendSuccessResponse(res, ok, 'User updated successfully!', null, userUpdateInfo);
+      sendSuccessResponse(res, ok, approveEmailAddressToAdmin, null, null);
     } else {
-      sendErrorResponse(res, internalServerError, 'User update failed!');
+      sendErrorResponse(res, internalServerError, userFailedToUpdate);
     }
   }
 
