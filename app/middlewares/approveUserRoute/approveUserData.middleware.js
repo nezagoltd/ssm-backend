@@ -7,11 +7,11 @@ import services from '../../services';
  */
 const getRoleData = async req => {
   const { RoleServiceInstance } = services;
-  let userRoleData;
+  const userRoleData = {};
   if (req.body.roleId) {
     userRoleData.passedRoleId = req.body.roleId;
   } else {
-    const accountantRole = await RoleServiceInstance.getBy({ name: 'accountant' });
+    const { dataValues: accountantRole } = await RoleServiceInstance.getBy({ name: 'accountant' });
     const roleId = accountantRole.id;
     userRoleData.passedRoleId = roleId;
   }

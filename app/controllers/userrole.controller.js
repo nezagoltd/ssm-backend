@@ -33,7 +33,7 @@ class UserRoleController {
   create = async (req, res) => {
     const { passedUserId, passedRoleId } = req.body;
     const { dataValues: savedUser } = await UserRoleServiceInstance.saveAll(
-      { passedUserId, passedRoleId },
+      { userId: passedUserId, roleId: passedRoleId },
     );
     if (savedUser) {
       sendSuccessResponse(
