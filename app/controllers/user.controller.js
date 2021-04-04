@@ -3,7 +3,7 @@ import services from '../services';
 import { successCodes, failureCodes } from '../helpers/statusCodes.helper';
 import { sendSuccessResponse, sendErrorResponse } from '../helpers/response.helper';
 import { encryptPassword } from '../helpers/passwordEncDec.helper';
-import { decodeToken, generateToken } from '../helpers/token.helper';
+import { generateToken } from '../helpers/token.helper';
 import { successMessages, errorMessages, generateVerifyEmailContent } from '../helpers/messages.helper';
 import sendEmail from '../helpers/mailer.helper';
 
@@ -12,8 +12,8 @@ dotenv.config();
 const { UserServiceInstance } = services;
 const { created, ok } = successCodes;
 const { badRequest, internalServerError } = failureCodes;
-const { accountCreatedTemporary, approveEmailAddressToAdmin } = successMessages;
-const { accountFailedToCreate, userFailedToUpdate } = errorMessages;
+const { accountCreatedTemporary } = successMessages;
+const { accountFailedToCreate } = errorMessages;
 const { APPLICATION_URL } = process.env;
 
 /**
@@ -30,18 +30,6 @@ const getUserParams = async req => {
   return {
     firstName, lastName, email, password: encryptedPassword,
   };
-};
-
-/**
- * @description It finds user from the database
- * @param {object} token
- * @param {object} userService
- * @returns {object} foundUser
- */
-const setUser = async (token, userService) => {
-  const { id } = decodeToken(token);
-  const foundUser = await userService.getBy({ id });
-  return foundUser;
 };
 
 /**
@@ -96,21 +84,19 @@ class UserController {
   /**
    * @param {object} req
    * @param {object} res
+   * @param {object} next
    * @returns {void}
    * @description PATCH | GET: /users/userId
    */
-  update = async (req, res) => {
-    let mUser;
-    if (req.query.token) {
-      mUser = await setUser(req.query.token, UserServiceInstance);
-    }
-    const userUpdateInfo = await UserServiceInstance.updateBy(
-      { isVerified: true }, { id: mUser.id },
-    );
+  update = async (req, res, next) => {
+    const { dataToUpdate, whereCondition } = req;
+    const userUpdateInfo = await UserServiceInstance.updateBy(dataToUpdate, whereCondition);
     if (userUpdateInfo) {
-      sendSuccessResponse(res, ok, approveEmailAddressToAdmin, null, null);
+      req.statusCode = ok;
+      next();
     } else {
-      sendErrorResponse(res, internalServerError, userFailedToUpdate);
+      req.statusCode = internalServerError;
+      next();
     }
   }
 
