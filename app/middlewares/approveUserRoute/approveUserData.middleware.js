@@ -7,7 +7,7 @@
  */
 const dataForApprovingUser = async (req, res, next) => {
   const { userId } = req.params;
-  const dataToUpdate = { isApproved: true };
+  const dataToUpdate = { isApproved: true, isActive: true };
   const whereCondition = { id: userId };
   req.dataToUpdate = dataToUpdate;
   req.whereCondition = whereCondition;
