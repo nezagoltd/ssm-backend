@@ -1,7 +1,8 @@
 import dotenv from 'dotenv';
 import { successCodes, failureCodes } from '../../helpers/statusCodes.helper';
 import { sendSuccessResponse, sendErrorResponse } from '../../helpers/response.helper';
-import { successMessages, errorMessages, generateApproveEmailContent } from '../../helpers/messages.helper';
+import { successMessages, errorMessages } from '../../helpers/messages.helper';
+import { generateApproveEmailContent } from '../../helpers/mail/mailer.helper';
 import sendEmail from '../../helpers/mailer.helper';
 
 dotenv.config();
