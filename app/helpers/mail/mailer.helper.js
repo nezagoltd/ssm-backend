@@ -3,9 +3,10 @@
  * @param {string} firstName
  * @param {string} lastName
  * @param {string} verifyURL
+ * @param {string} appURL
  * @returns {html} mailBodyHTML
  */
-const generateVerifyEmailHTML = (firstName, lastName, verifyURL) => `
+const generateVerifyEmailHTML = (firstName, lastName, verifyURL, appURL) => `
 <div style="width: 70%; margin: 0 auto; font-family: sans-serif;">
   <nav style="background-color: #c4c4c4; padding: 0.1rem;">
     <h1 style="text-align: center;">SSM needs you to verify your email address</h1>
@@ -50,7 +51,7 @@ const generateVerifyEmailHTML = (firstName, lastName, verifyURL) => `
 export const generateVerifyEmailContent = (userData, token, appURL) => {
   const { firstName, lastName } = userData;
   const verifyURL = `${appURL}/api/users/verify-email?token=${token}`;
-  const verifyEmailContentHTML = generateVerifyEmailHTML(firstName, lastName, appURL);
+  const verifyEmailContentHTML = generateVerifyEmailHTML(firstName, lastName, verifyURL, appURL);
 
   const verifyEmailContentPlainText = `
     Note: If you cannot see this email properly, please use a browser
