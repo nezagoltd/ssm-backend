@@ -17,7 +17,7 @@ describe('Test the registration feature', () => {
         expect(res.body).to.have.property('token');
         expect(res.body).to.have.property('data');
         expect(res.body.message).to.be.a('string');
-        expect(res.body.data).to.be.a(null);
+        expect(res.body.data).to.be.equal(null);
         expect(res.body.token).to.equal(null);
         done(err);
       });
