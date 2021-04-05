@@ -3,7 +3,7 @@
  * @param {string} firstName
  * @param {string} lastName
  * @param {string} verifyURL
- * @returns {string} mailBody
+ * @returns {html} mailBodyHTML
  */
 const generateVerifyEmailHTML = (firstName, lastName, verifyURL) => `
 <div style="width: 70%; margin: 0 auto; font-family: sans-serif;">
@@ -75,18 +75,15 @@ export const generateVerifyEmailContent = (userData, token, appURL) => {
 };
 
 /**
- * @param {object} userData
- * @param {object} adminData
- * @param {object} appURL
- * @returns {object} verifyEmailContent
- * @description It returns the approve email address message content
+ * @description It prepares and generate email for approval
+ * @param {string} adminFName
+ * @param {string} adminLName
+ * @param {string} approveURL
+ * @param {string} appURL
+ * @returns {html} mailBodyHTML
  */
-export const generateApproveEmailContent = (userData, adminData, appURL) => {
-  const { id: userId } = userData;
-  const { firstName: adminFName, lastName: adminLName } = adminData;
-  const approveURL = `${appURL}/api/users/approve-user?userId=${userId}`;
-  const approveUserEmailContentHTML = `
-  <div style="width: 70%; margin: 0 auto; font-family: sans-serif;">
+const generateApproveEmailHTML = (adminFName, adminLName, approveURL, appURL) => `
+<div style="width: 70%; margin: 0 auto; font-family: sans-serif;">
     <nav style="background-color: #c4c4c4; padding: 0.1rem;">
       <h1 style="text-align: center;">Approve a new user of SSM</h1>
     </nav>
@@ -117,7 +114,22 @@ export const generateApproveEmailContent = (userData, adminData, appURL) => {
       <p style="text-align: center; font-size: 0.8rem;">© 2021 <a href="${appURL}">SSM</a>. All rights reserved.</p>
     </footer>
   </div>
-  `;
+`;
+
+/**
+ * @param {object} userData
+ * @param {object} adminData
+ * @param {object} appURL
+ * @returns {object} verifyEmailContent
+ * @description It returns the approve email address message content
+ */
+export const generateApproveEmailContent = (userData, adminData, appURL) => {
+  const { id: userId } = userData;
+  const { firstName: adminFName, lastName: adminLName } = adminData;
+  const approveURL = `${appURL}/api/users/approve-user?userId=${userId}`;
+  const approveUserEmailContentHTML = generateApproveEmailHTML(
+    adminFName, adminLName, approveURL, appURL,
+  );
 
   const approveUserEmailContentPlainText = `
     Note: If you cannot see this email properly, please use a browser
