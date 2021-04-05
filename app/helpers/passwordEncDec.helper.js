@@ -12,13 +12,18 @@ export const encryptPassword = async (password) => {
 };
 
 /**
-   *
-   * @param {string} currPassword
-   * @param {string} hashedPassword
-   * @returns {bool} boolean
-   * @description it returns a boolean about the password matching status
-   */
-export const decryptPassword = async (currPassword, hashedPassword) => {
-  const isPasswordChecked = await bcrypt.compare(currPassword, hashedPassword);
-  return isPasswordChecked;
-};
+ * @returns {void}
+ */
+export const descholar = () => {};
+
+// /**
+//    *
+//    * @param {string} currPassword
+//    * @param {string} hashedPassword
+//    * @returns {bool} boolean
+//    * @description it returns a boolean about the password matching status
+//    */
+// export const decryptPassword = async (currPassword, hashedPassword) => {
+//   const isPasswordChecked = await bcrypt.compare(currPassword, hashedPassword);
+//   return isPasswordChecked;
+// };
