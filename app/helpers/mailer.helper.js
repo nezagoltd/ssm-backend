@@ -4,15 +4,31 @@ import nodemailer from 'nodemailer';
 dotenv.config();
 
 /**
+ * @description it prepares email data
+ * @param {object} mailData
+ * @param {string} applicationEmail
+ * @returns {object} emailData
+ */
+const prepareEmailConfigs = (mailData, applicationEmail) => {
+  const {
+    mailSentTo, mailSubject, contentText, contentHTML,
+  } = mailData;
+
+  return {
+    from: applicationEmail,
+    to: mailSentTo,
+    subject: mailSubject,
+    html: contentHTML,
+    text: contentText,
+  };
+};
+
+/**
  * @param {Object} mailData - Email information
  * @returns {void}
  * @description it sends email to passed data
  */
 const sendEmail = async (mailData) => {
-  const {
-    mailSentTo, mailSubject, contentText, contentHTML,
-  } = mailData;
-
   const { APPLICATION_EMAIL, APPLICATION_EMAIL_PASSWORD } = process.env;
 
   const transporter = nodemailer.createTransport({
@@ -26,13 +42,7 @@ const sendEmail = async (mailData) => {
     },
   });
 
-  const mailConfigs = {
-    from: APPLICATION_EMAIL,
-    to: mailSentTo,
-    subject: mailSubject,
-    html: contentHTML,
-    text: contentText,
-  };
+  const mailConfigs = prepareEmailConfigs(mailData, APPLICATION_EMAIL);
 
   let isSent;
 
