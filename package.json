@@ -18,7 +18,7 @@
     "db:seed:rollback": "npx sequelize-cli db:seed:undo",
     "db:add:superadmin": "babel-node ./bin/addSuperadmin.js",
     "db:remove:superadmin": "babel-node ./bin/removeSuperadmin.js",
-    "pretest": "yarn db:rollback && yarn db:migrate && yarn db:add:superadmin",
+    "pretest": "yarn db:rollback && yarn db:migrate  && yarn db:seed && yarn db:add:superadmin",
     "posttest": "yarn db:rollback && yarn db:migrate && yarn db:add:superadmin",
     "test": "nyc mocha --require @babel/register ./tests/**/*.test.js --timeout 30000 --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
