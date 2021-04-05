@@ -10,10 +10,7 @@ dotenv.config();
  */
 const sendEmail = async (mailData) => {
   const {
-    mailSentTo,
-    mailSubject,
-    contentText,
-    contentHTML,
+    mailSentTo, mailSubject, contentText, contentHTML,
   } = mailData;
 
   const { APPLICATION_EMAIL, APPLICATION_EMAIL_PASSWORD } = process.env;
