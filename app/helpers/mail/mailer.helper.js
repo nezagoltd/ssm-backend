@@ -1,4 +1,25 @@
 /**
+ * @description it prepares and generate the mail body
+ * @param {string} verifyURL
+ * @returns {string} mailBody
+ */
+const generateVerifyEmailBody = verifyURL => `
+  <p>You recently registered on Social Saving Management (SSM), we sent you this email in order to verify if the email you provided us is viable,
+      for the sake of security and better services you receive from SSM!</p>
+
+  <p>Kindly click the button below, so that we will know that this email belongs to you. Keep in mind that you need to always remember your email
+  and password you used and don’t share it with anyone else!</p>
+
+  <div style="padding: 1rem 0 1rem 0;">
+    <a href="${verifyURL}" style="background-color: #861A02; color: #ffffff; width: 40%; padding: 0.8rem; text-decoration: none; border-radius: 0.2rem;">
+      Verify email address</a>
+  </div>
+
+  <p>If you didn’t register on Social Saving Management system recently,
+  we are sorry for that inconvenience, ignore this email!</p>
+  `;
+
+/**
  * @param {object} userData
  * @param {object} token
  * @param {object} appURL
@@ -17,19 +38,7 @@ export const generateVerifyEmailContent = (userData, token, appURL) => {
     <div style="padding: 2rem;">
       <h2>Hi ${firstName} ${lastName}!</h2>
 
-      <p>You recently registered on Social Saving Management (SSM), we sent you this email in order to verify if the email you provided us is viable,
-      for the sake of security and better services you receive from SSM!</p>
-
-      <p>Kindly click the button below, so that we will know that this email belongs to you. Keep in mind that you need to always remember your email
-      and password you used and don’t share it with anyone else!</p>
-
-      <div style="padding: 1rem 0 1rem 0;">
-        <a href="${verifyURL}" style="background-color: #861A02; color: #ffffff; width: 40%; padding: 0.8rem; text-decoration: none; border-radius: 0.2rem;">
-          Verify email address</a>
-      </div>
-
-      <p>If you didn’t register on Social Saving Management system recently,
-      we are sorry for that inconvenience, ignore this email!</p>
+      ${generateVerifyEmailBody(verifyURL)}
 
       <div>
         <p>Yours truly,</p>
