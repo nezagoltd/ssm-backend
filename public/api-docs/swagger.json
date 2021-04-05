@@ -19,5 +19,205 @@
   ],
   "produces": [
     "application/json"
-  ]
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "summary": "User registration",
+        "tags": [
+          "User registration"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "firstName",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "format": "string",
+            "description": "First name"
+          },
+          {
+            "name": "lastName",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "format": "string",
+            "description": "Last name"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "format": "email",
+            "description": "Email for securing user's account"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "format": "password",
+            "description": "Password for authentication"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when login is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          },
+          "400": {
+            "description": "This is how the response looks like when a user sends empty email, or empty password or both empty",
+            "schema": {
+              "$ref": "#/login-definition/login-response-empty-data"
+            }
+          },
+          "401": {
+            "description": "This is how the response looks like when a user sends wrong email or password",
+            "schema": {
+              "$ref": "#/login-definition/login-response-wrong-data"
+            }
+          }
+        }
+      }
+    },
+    "/users/verify-email?token=token": {
+      "get": {
+        "summary": "User verifies his email",
+        "tags": [
+          "User registration"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when login is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          },
+          "400": {
+            "description": "This is how the response looks like when a user sends empty email, or empty password or both empty",
+            "schema": {
+              "$ref": "#/login-definition/login-response-empty-data"
+            }
+          },
+          "401": {
+            "description": "This is how the response looks like when a user sends wrong email or password",
+            "schema": {
+              "$ref": "#/login-definition/login-response-wrong-data"
+            }
+          }
+        }
+      }
+    },
+    "/users/approve-user": {
+      "patch": {
+        "summary": "Admin approves user account",
+        "tags": [
+          "User registration"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "formData",
+            "required": false,
+            "type": "integer",
+            "format": "intger",
+            "description": "For assigning new role"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when login is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          },
+          "400": {
+            "description": "This is how the response looks like when a user sends empty email, or empty password or both empty",
+            "schema": {
+              "$ref": "#/login-definition/login-response-empty-data"
+            }
+          },
+          "401": {
+            "description": "This is how the response looks like when a user sends wrong email or password",
+            "schema": {
+              "$ref": "#/login-definition/login-response-wrong-data"
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "User Login",
+        "tags": [
+          "User Login"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "format": "email",
+            "description": "Email for securing user's account"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "format": "password",
+            "description": "Password for authentication"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when login is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          },
+          "400": {
+            "description": "This is how the response looks like when a user sends empty email, or empty password or both empty",
+            "schema": {
+              "$ref": "#/login-definition/login-response-empty-data"
+            }
+          },
+          "401": {
+            "description": "This is how the response looks like when a user sends wrong email or password",
+            "schema": {
+              "$ref": "#/login-definition/login-response-wrong-data"
+            }
+          }
+        }
+      }
+    }
+  }
 }
