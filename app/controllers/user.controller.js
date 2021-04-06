@@ -5,7 +5,7 @@ import { sendSuccessResponse, sendErrorResponse } from '../helpers/response.help
 import { encryptPassword } from '../helpers/passwordEncDec.helper';
 import { generateToken } from '../helpers/token.helper';
 import { successMessages, errorMessages } from '../helpers/messages.helper';
-import { generateVerifyEmailContent } from '../helpers/mail/mailer.helper';
+import { generateVerifyEmailContent } from '../helpers/mail/mailerMessageContent.helper';
 import sendEmail from '../helpers/mailer.helper';
 
 dotenv.config();
