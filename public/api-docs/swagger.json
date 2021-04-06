@@ -123,7 +123,7 @@
         }
       }
     },
-    "/users/approve-user": {
+    "/users/approve-user/:roleId": {
       "patch": {
         "summary": "Admin approves user account",
         "tags": [
@@ -133,7 +133,7 @@
           "application/json"
         ],
         "consumes": [
-          "application/x-www-form-urlencoded"
+          "application/json"
         ],
         "parameters": [
           {
