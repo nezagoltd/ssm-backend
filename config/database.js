@@ -42,7 +42,5 @@ module.exports = {
     host: PROD_DB_HOSTNAME,
     port: PROD_DB_PORT,
     dialect: 'postgres',
-    logging: false,
-    ssl: { rejectUnauthorized: false },
   },
 };
