@@ -10,7 +10,10 @@ describe('Test the app if it launches', () => {
       .request(server)
       .get('/')
       .end((err, res) => {
-        expect(res).to.be.an('object');
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('message');
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.message).to.equal('Welcome to SSM!');
         done();
       });
   });

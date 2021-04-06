@@ -1,2 +1,3 @@
 /app/models/index.js
 /db/migrate/*.js
+/db/seeds/*.js
