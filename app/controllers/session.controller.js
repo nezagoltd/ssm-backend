@@ -11,7 +11,7 @@ const { loginSuccess } = successMessages;
 /**
  * @class
  */
-class UserController {
+class SessionController {
   /**
    * @param {object} req
    * @param {object} res
@@ -37,4 +37,4 @@ class UserController {
   // delete = (req, res) => {}
 }
 
-export default UserController;
+export default SessionController;
