@@ -37,7 +37,7 @@ const checkCredentials = async (req, res, next) => {
       result.userData = foundUser;
     }
   }
-  req.userFromDb = result;
+  req.userFromDb = result.userData;
   next();
 };
 
