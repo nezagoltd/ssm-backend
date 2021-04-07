@@ -12,7 +12,8 @@ const { UserServiceInstance } = services;
 const getUser = async req => {
   const { email, password } = req.body;
   const result = { foundUser: null };
-  if (email && password) {
+  const isCredentialsPassed = !!(email && password);
+  if (isCredentialsPassed) {
     const mUser = await UserServiceInstance.getBy({ email });
     if (mUser) {
       const { dataValues: userFromDb } = mUser;
