@@ -16,7 +16,7 @@ class UserController {
    * @description POST: /login
    */
   create = async (req, res) => {
-    
+    const { email, password } = req.body;
   }
 
   // /**
