@@ -13,9 +13,12 @@ const getUser = async req => {
   const { email, password } = req.body;
   const result = { foundUser: null };
   if (email && password) {
-    const { dataValues: userFromDb } = await UserServiceInstance.getBy({ email });
-    if (userFromDb) {
-      result.foundUser = userFromDb;
+    const mUser = await UserServiceInstance.getBy({ email });
+    if (mUser) {
+      const { dataValues: userFromDb } = mUser;
+      if (userFromDb) {
+        result.foundUser = userFromDb;
+      }
     }
   }
   return result;
@@ -32,8 +35,9 @@ const checkCredentials = async (req, res, next) => {
   const { password } = req.body;
   const result = { userData: null };
   const { foundUser } = await getUser(req);
+  const isPasswordVerified = await isPasswordTrue(password, foundUser.password);
   if (foundUser) {
-    if (isPasswordTrue(password, foundUser.password)) {
+    if (isPasswordVerified) {
       result.userData = foundUser;
     }
   }
