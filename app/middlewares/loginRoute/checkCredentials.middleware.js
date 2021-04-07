@@ -35,8 +35,8 @@ const checkCredentials = async (req, res, next) => {
   const { password } = req.body;
   const result = { userData: null };
   const { foundUser } = await getUser(req);
-  const isPasswordVerified = await isPasswordTrue(password, foundUser.password);
   if (foundUser) {
+    const isPasswordVerified = await isPasswordTrue(password, foundUser.password);
     if (isPasswordVerified) {
       result.userData = foundUser;
     }
