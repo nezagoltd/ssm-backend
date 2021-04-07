@@ -4,16 +4,21 @@ import { isPasswordTrue } from '../../helpers/passwordEncDec.helper';
 const { UserServiceInstance } = services;
 
 /**
- * @description It checks if the credentials have been passed in the request body
+ * @description It checks if the credentials
+ * have been passed in the request body and retrieve that user from db
  * @param {req} req
- * @returns {bool} result
+ * @returns {object} result
  */
-const isCredentialsPassed = req => {
+const getUser = async req => {
   const { email, password } = req.body;
+  const result = { foundUser: null };
   if (email && password) {
-    return true;
+    const { dataValues: userFromDb } = await UserServiceInstance.getBy({ email });
+    if (userFromDb) {
+      result.foundUser = userFromDb;
+    }
   }
-  return false;
+  return result;
 };
 
 /**
@@ -24,14 +29,12 @@ const isCredentialsPassed = req => {
  * @returns {void}
  */
 const checkCredentials = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { password } = req.body;
   const result = { userData: null };
-  if (isCredentialsPassed(req)) {
-    const { dataValues: userFromDb } = await UserServiceInstance.getBy({ email });
-    if (userFromDb) {
-      if (isPasswordTrue(password, userFromDb.password)) {
-        result.userData = userFromDb;
-      }
+  const { foundUser } = await getUser(req);
+  if (foundUser) {
+    if (isPasswordTrue(password, foundUser.password)) {
+      result.userData = foundUser;
     }
   }
   req.userFromDb = result;
