@@ -27,6 +27,11 @@ const checkCredentials = async (req, res, next) => {
   const result = {};
   if (isCredentialsPassed(req)) {
     const { dataValues: userFromDb } = await UserServiceInstance.getBy({ email });
+    if (userFromDb) {
+      
+    } else {
+      result.userData = null;
+    }
   }
 };
 
