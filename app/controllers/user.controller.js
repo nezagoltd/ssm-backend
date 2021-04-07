@@ -12,7 +12,7 @@ dotenv.config();
 
 const { UserServiceInstance } = services;
 const { created, ok } = successCodes;
-const { badRequest, internalServerError } = failureCodes;
+const { badRequest, internalServerError, notFound } = failureCodes;
 const { accountCreatedTemporary } = successMessages;
 const { accountFailedToCreate } = errorMessages;
 const { APPLICATION_URL } = process.env;
@@ -38,12 +38,20 @@ const getUserParams = async req => {
  */
 class UserController {
   /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description GET: /users
-  //  */
-  // all = (req, res) => {}
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description GET: /users
+   */
+  all = async (req, res) => {
+    const { whereCondition } = req;
+    const gottenUsers = await UserServiceInstance.getAll(whereCondition);
+    if (gottenUsers) {
+      sendSuccessResponse(res, ok, 'Unapproved user found', null, gottenUsers);
+    } else {
+      sendErrorResponse(res, notFound, 'No un-approved account found');
+    }
+  }
 
   /**
    * @param {object} req
