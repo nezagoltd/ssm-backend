@@ -25,21 +25,17 @@ const isCredentialsPassed = req => {
  */
 const checkCredentials = async (req, res, next) => {
   const { email, password } = req.body;
-  const result = {};
+  const result = { userData: null };
   if (isCredentialsPassed(req)) {
     const { dataValues: userFromDb } = await UserServiceInstance.getBy({ email });
     if (userFromDb) {
       if (isPasswordTrue(password, userFromDb.password)) {
         result.userData = userFromDb;
-      } else {
-        result.userData = null;
       }
-    } else {
-      result.userData = null;
     }
   }
   req.userFromDb = result;
-  return next;
+  next();
 };
 
 export default checkCredentials;
