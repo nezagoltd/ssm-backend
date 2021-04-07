@@ -1,4 +1,5 @@
 import services from '../../services';
+import { isPasswordTrue } from '../../helpers/passwordEncDec.helper';
 
 const { UserServiceInstance } = services;
 
@@ -28,11 +29,17 @@ const checkCredentials = async (req, res, next) => {
   if (isCredentialsPassed(req)) {
     const { dataValues: userFromDb } = await UserServiceInstance.getBy({ email });
     if (userFromDb) {
-      
+      if (isPasswordTrue(password, userFromDb.password)) {
+        result.userData = userFromDb;
+      } else {
+        result.userData = null;
+      }
     } else {
       result.userData = null;
     }
   }
+  req.userFromDb = result;
+  return next;
 };
 
 export default checkCredentials;
