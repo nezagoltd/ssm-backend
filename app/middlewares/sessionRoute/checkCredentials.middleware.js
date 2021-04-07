@@ -7,7 +7,7 @@ const { UserServiceInstance } = services;
  * @param {req} req
  * @returns {bool} result
  */
-const validateIfCredentialsPassed = req => {
+const isCredentialsPassed = req => {
   const { email, password } = req.body;
   if (email && password) {
     return true;
@@ -22,9 +22,12 @@ const validateIfCredentialsPassed = req => {
  * @param {object} next
  * @returns {void}
  */
-const checkCredentials = (req, res, next) => {
+const checkCredentials = async (req, res, next) => {
   const { email, password } = req.body;
-
+  const result = {};
+  if (isCredentialsPassed(req)) {
+    const { dataValues: userFromDb } = await UserServiceInstance.getBy({ email });
+  }
 };
 
 export default checkCredentials;
