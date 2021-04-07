@@ -1,10 +1,3 @@
-import dotenv from 'dotenv';
-import services from '../services';
-
-dotenv.config();
-
-const { UserServiceInstance } = services;
-
 /**
  * @class
  */
@@ -16,7 +9,6 @@ class UserController {
    * @description POST: /login
    */
   create = async (req, res) => {
-    const { email, password } = req.body;
   }
 
   // /**
