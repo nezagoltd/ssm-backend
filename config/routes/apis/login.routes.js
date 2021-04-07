@@ -4,9 +4,9 @@ import middlewares from '../../../app/middlewares';
 
 const loginRouter = Router();
 
-const { SessionControllerInstance } = controllers;
+const { LoginControllerInstance } = controllers;
 const { checkCredentials } = middlewares;
 
-loginRouter.post('/', checkCredentials, SessionControllerInstance.create);
+loginRouter.post('/', checkCredentials, LoginControllerInstance.create);
 
 export default loginRouter;

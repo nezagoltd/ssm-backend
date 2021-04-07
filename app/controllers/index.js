@@ -1,13 +1,13 @@
 import UserController from './user.controller';
 import UserRoleController from './userrole.controller';
-import SessionController from './session.controller';
+import LoginController from './login.controller';
 
 const UserControllerInstance = new UserController();
 const UserRoleControllerInstance = new UserRoleController();
-const SessionControllerInstance = new SessionController();
+const LoginControllerInstance = new LoginController();
 
 export default {
   UserControllerInstance,
   UserRoleControllerInstance,
-  SessionControllerInstance,
+  LoginControllerInstance,
 };
