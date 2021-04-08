@@ -1,14 +1,14 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../../bin/main';
-import { errorMessages, successMessages } from '../../app/helpers/messages.helper';
-import { successCodes, failureCodes } from '../../app/helpers/statusCodes.helper';
+import { successMessages } from '../../app/helpers/messages.helper';
+import { successCodes } from '../../app/helpers/statusCodes.helper';
 
 chai.use(chaiHttp);
 
-const { noRecordFound } = errorMessages;
+// const { noRecordFound } = errorMessages;
 const { recordFound } = successMessages;
-const { notFound } = failureCodes;
+// const { notFound } = failureCodes;
 const { ok } = successCodes;
 
 describe('Test the get unapproved users API', () => {
