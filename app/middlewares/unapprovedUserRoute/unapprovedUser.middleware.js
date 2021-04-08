@@ -6,7 +6,8 @@
  * @returns {void}
  */
 const unapprovedUserData = (req, res, next) => {
-  const {  } = req.query;
+  req.whereCondition = { isApproved: false };
+  next();
 };
 
 export default unapprovedUserData;
