@@ -3,10 +3,12 @@ export const successMessages = {
   approveEmailAddressToAdmin: 'Congratulations!\n\nYour account has been created temporary.!\n\nWe have sent an email to the system administrator, please wait for them to approve your account.',
   roleAssignedSuccess: 'The role has been assigned successfully!',
   loginSuccess: 'Logged in successfully!',
+  recordFound: 'Record retrieved successfully!',
 };
 export const errorMessages = {
   accountFailedToCreate: 'Sorry!\nAccount was not created, something weird went wrong, please try again!',
   userFailedToUpdate: 'Sorry!\nUser update failed!, please try again!',
   roleAssignmentFail: 'Sorry!\nAssigning that role to this user has failed, please try again!',
   loginFail: 'Sorry!\nYou either provided a wrong email or wron password, please try again!',
+  noRecordFound: 'No record were found!',
 };

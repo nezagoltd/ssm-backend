@@ -66,23 +66,23 @@ class DataCable {
     return foundRes;
   }
 
-  // /**
-  //  * @param {object} whereCondition
-  //  * @returns {object} foundRes
-  //  * @method
-  //  * @description it gets whereCondition which should be an object
-  //  * containing the attribute of the
-  //  * table and its value, example if you want to get by phoneNumber, ypu will pass the
-  //  * whereCondition as this {phoneNumber:"+250722792371"} then it returns the object containing a
-  //  * user with that phoneNumber
-  //  */
-  // getAll = async (whereCondition) => {
-  //   const inclusion = this.associateTable.map((table => ({ model: table })));
-  //   const foundRes = whereCondition
-  //     ? await this.model.findAndCountAll({ where: whereCondition, include: inclusion })
-  //     : await this.model.findAndCountAll({ include: inclusion });
-  //   return foundRes;
-  // }
+  /**
+   * @param {object} whereCondition
+   * @returns {object} foundRes
+   * @method
+   * @description it gets whereCondition which should be an object
+   * containing the attribute of the
+   * table and its value, example if you want to get by phoneNumber, ypu will pass the
+   * whereCondition as this {phoneNumber:"+250722792371"} then it returns the object containing a
+   * user with that phoneNumber
+   */
+  getAll = async (whereCondition) => {
+    const inclusion = this.associateTable.map((table => ({ model: table })));
+    const foundRes = whereCondition
+      ? await this.model.findAndCountAll({ where: whereCondition, include: inclusion })
+      : await this.model.findAndCountAll({ include: inclusion });
+    return foundRes;
+  }
 
   /**
    * @param {object} dataToUpdate

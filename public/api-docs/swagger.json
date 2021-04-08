@@ -167,6 +167,32 @@
         }
       }
     },
+    "/not-approved-users": {
+      "get": {
+        "summary": "Admin gets all unapproved users",
+        "tags": [
+          "User registration"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [ ],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when login is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          },
+          "404": {
+            "description": "No records were found"
+          }
+        }
+      }
+    },
     "/login": {
       "post": {
         "summary": "User Login",
