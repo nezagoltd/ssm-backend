@@ -17,7 +17,6 @@ describe('Test the get unapproved users API', () => {
       .request(server)
       .get('/api/users/not-approved-users')
       .end((err, res) => {
-        console.log({ foundResult: res.body });
         expect(res).to.have.status(ok);
         expect(res.body).to.be.an('object');
         expect(res.body).to.have.property('message');
