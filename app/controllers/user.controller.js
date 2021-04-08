@@ -46,7 +46,7 @@ class UserController {
   all = async (req, res) => {
     const { whereCondition } = req;
     const gottenUsers = await UserServiceInstance.getAll(whereCondition);
-    if (gottenUsers) {
+    if (gottenUsers.count > 0) {
       sendSuccessResponse(res, ok, recordFound, null, gottenUsers);
     } else {
       sendErrorResponse(res, notFound, noRecordFound);
