@@ -13,6 +13,7 @@ const {
 } = middlewares;
 
 userRouter.post('/', UserControllerInstance.create);
+userRouter.get('/', UserControllerInstance.all);
 userRouter.get('/verify-email', dataForVerifyEmail, UserControllerInstance.update, respondAfterVerifyingEmail);
 userRouter.patch('/approve-user/:userId', dataForApprovingUser, UserControllerInstance.update, UserRoleControllerInstance.create);
 userRouter.get('/not-approved-users', unapprovedUserData, UserControllerInstance.all);
