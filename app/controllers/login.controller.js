@@ -2,6 +2,7 @@ import { generateToken } from '../helpers/token.helper';
 import { sendSuccessResponse, sendErrorResponse } from '../helpers/response.helper';
 import { successCodes, failureCodes } from '../helpers/statusCodes.helper';
 import { successMessages, errorMessages } from '../helpers/messages.helper';
+import redisClient from '../../config/redis/redis.config';
 
 const { ok } = successCodes;
 const { unAuthorized } = failureCodes;
@@ -28,13 +29,17 @@ class LoginController {
     }
   }
 
-  // /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description DELETE: /users/userId
-  //  */
-  // delete = (req, res) => {}
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description DELETE: /users/userId
+   */
+  delete = (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    redisClient.sadd('token', token);
+    sendSuccessResponse(res, ok, 'Logged out successfully', null, null);
+  }
 }
 
 export default LoginController;
