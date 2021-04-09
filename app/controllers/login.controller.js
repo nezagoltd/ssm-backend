@@ -17,7 +17,7 @@ class LoginController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description POST: /login
+   * @description POST: /session/login
    */
   create = (req, res) => {
     const { userFromDb } = req;
@@ -33,7 +33,7 @@ class LoginController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description DELETE: /logout
+   * @description DELETE: /session/logout
    */
   delete = (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
