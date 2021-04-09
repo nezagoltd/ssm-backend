@@ -2,11 +2,12 @@ import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../../bin/main';
 import { userInvalidEmailLogin, userValidLoginData } from '../mocks/user.mock.data';
-import { errorMessages } from '../../app/helpers/messages.helper';
+import { errorMessages, successMessages } from '../../app/helpers/messages.helper';
 
 chai.use(chaiHttp);
 
 const { loginFail } = errorMessages;
+const { loginSuccess } = successMessages;
 
 describe('Test the login feature', () => {
   it('Will login successfully, and send token on a successful login', (done) => {
@@ -22,6 +23,7 @@ describe('Test the login feature', () => {
         expect(res.body.message).to.be.a('string');
         expect(res.body.token).to.be.a('string');
         expect(res.body.data).to.equal(null);
+        expect(res.body.message).to.equal(loginSuccess);
         done(err);
       });
   });
