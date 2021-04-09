@@ -14,8 +14,8 @@ const { updateSuccess } = successMessages;
  * @param {object} next
  * @returns {void}
  */
-const setDataForUpdatingUser = async (req, res) => {
-  const { statusCode } = req;
+const sendResponseAfterUserUpdate = async (req, res) => {
+  const { statusCode } = res;
   if (statusCode === ok) {
     sendSuccessResponse(res, ok, updateSuccess, null, null);
   } else {
@@ -23,4 +23,4 @@ const setDataForUpdatingUser = async (req, res) => {
   }
 };
 
-export default setDataForUpdatingUser;
+export default sendResponseAfterUserUpdate;

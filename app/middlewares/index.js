@@ -4,6 +4,7 @@ import dataForApprovingUser from './approveUserRoute/approveUserData.middleware'
 import checkCredentials from './loginRoute/checkCredentials.middleware';
 import unapprovedUserData from './unapprovedUserRoute/unapprovedUser.middleware';
 import setDataForUpdatingUser from './updateUser/setUpdateUserData.middleware';
+import sendResponseAfterUserUpdate from './updateUser/respondAfterUpdate.middleware';
 
 export default {
   dataForVerifyEmail,
@@ -12,4 +13,5 @@ export default {
   checkCredentials,
   unapprovedUserData,
   setDataForUpdatingUser,
+  sendResponseAfterUserUpdate,
 };

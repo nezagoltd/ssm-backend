@@ -11,11 +11,12 @@ const {
   dataForApprovingUser,
   unapprovedUserData,
   setDataForUpdatingUser,
+  sendResponseAfterUserUpdate,
 } = middlewares;
 
 userRouter.post('/', UserControllerInstance.create);
 userRouter.get('/', UserControllerInstance.all);
-userRouter.patch('/:userId', setDataForUpdatingUser, UserControllerInstance.update);
+userRouter.patch('/:userId', setDataForUpdatingUser, UserControllerInstance.update, sendResponseAfterUserUpdate);
 userRouter.get('/verify-email', dataForVerifyEmail, UserControllerInstance.update, respondAfterVerifyingEmail);
 userRouter.patch('/approve-user/:userId', dataForApprovingUser, UserControllerInstance.update, UserRoleControllerInstance.create);
 userRouter.get('/not-approved-users', unapprovedUserData, UserControllerInstance.all);
