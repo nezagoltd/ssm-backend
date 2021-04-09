@@ -193,7 +193,7 @@
         }
       }
     },
-    "/login": {
+    "/session/login": {
       "post": {
         "summary": "User Login",
         "tags": [
@@ -240,6 +240,29 @@
             "description": "This is how the response looks like when a user sends wrong email or password",
             "schema": {
               "$ref": "#/login-definition/login-response-wrong-data"
+            }
+          }
+        }
+      }
+    },
+    "/session/logout": {
+      "delete": {
+        "summary": "User Logout",
+        "tags": [
+          "User Login"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
             }
           }
         }
