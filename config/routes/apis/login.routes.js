@@ -8,6 +8,6 @@ const { LoginControllerInstance } = controllers;
 const { checkCredentials } = middlewares;
 
 sessionRouter.post('/login', checkCredentials, LoginControllerInstance.create);
-sessionRouter.post('/logout', LoginControllerInstance.delete);
+sessionRouter.delete('/logout', LoginControllerInstance.delete);
 
 export default sessionRouter;
