@@ -29,7 +29,7 @@ const isUserExists = async (id, res) => {
  * @param {object} next
  * @returns {void}
  */
-const dataForUpdatingUser = async (req, res, next) => {
+const setDataForUpdatingUser = async (req, res, next) => {
   const { userId } = req.params;
   const isUserFound = await isUserExists(userId, res);
   if (isUserFound) {
@@ -41,4 +41,4 @@ const dataForUpdatingUser = async (req, res, next) => {
   }
 };
 
-export default dataForUpdatingUser;
+export default setDataForUpdatingUser;
