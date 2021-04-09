@@ -2,11 +2,12 @@ import { generateToken } from '../helpers/token.helper';
 import { sendSuccessResponse, sendErrorResponse } from '../helpers/response.helper';
 import { successCodes, failureCodes } from '../helpers/statusCodes.helper';
 import { successMessages, errorMessages } from '../helpers/messages.helper';
+import redisClient from '../../config/redis/redis.config';
 
 const { ok } = successCodes;
 const { unAuthorized } = failureCodes;
 const { loginFail } = errorMessages;
-const { loginSuccess } = successMessages;
+const { loginSuccess, loggedOut } = successMessages;
 
 /**
  * @class
@@ -16,7 +17,7 @@ class LoginController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description POST: /login
+   * @description POST: /session/login
    */
   create = (req, res) => {
     const { userFromDb } = req;
@@ -28,13 +29,17 @@ class LoginController {
     }
   }
 
-  // /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description DELETE: /users/userId
-  //  */
-  // delete = (req, res) => {}
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description DELETE: /session/logout
+   */
+  delete = (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    redisClient.sadd('token', token);
+    sendSuccessResponse(res, ok, loggedOut, null, null);
+  }
 }
 
 export default LoginController;

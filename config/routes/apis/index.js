@@ -5,6 +5,6 @@ import sessionRouter from './login.routes';
 const apiRouter = Router();
 
 apiRouter.use('/users', userRouter);
-apiRouter.use('/login', sessionRouter);
+apiRouter.use('/session', sessionRouter);
 
 export default apiRouter;
