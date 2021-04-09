@@ -100,7 +100,7 @@ class UserController {
   update = async (req, res, next) => {
     const { dataToUpdate, whereCondition } = req;
     const userUpdateInfo = await UserServiceInstance.updateBy(dataToUpdate, whereCondition);
-    if (userUpdateInfo) {
+    if (userUpdateInfo[0]) {
       res.statusCode = ok;
       next();
     } else {
