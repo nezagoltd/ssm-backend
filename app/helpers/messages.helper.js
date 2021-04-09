@@ -5,6 +5,7 @@ export const successMessages = {
   loginSuccess: 'Logged in successfully!',
   recordFound: 'Record retrieved successfully!',
   loggedOut: 'Logged out successfully',
+  updateSuccess: 'Records updated successfully',
 };
 export const errorMessages = {
   accountFailedToCreate: 'Sorry!\nAccount was not created, something weird went wrong, please try again!',
