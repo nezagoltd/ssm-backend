@@ -4,6 +4,7 @@ export const successMessages = {
   roleAssignedSuccess: 'The role has been assigned successfully!',
   loginSuccess: 'Logged in successfully!',
   recordFound: 'Record retrieved successfully!',
+  loggedOut: 'Logged out successfully',
 };
 export const errorMessages = {
   accountFailedToCreate: 'Sorry!\nAccount was not created, something weird went wrong, please try again!',

@@ -7,7 +7,7 @@ import redisClient from '../../config/redis/redis.config';
 const { ok } = successCodes;
 const { unAuthorized } = failureCodes;
 const { loginFail } = errorMessages;
-const { loginSuccess } = successMessages;
+const { loginSuccess, loggedOut } = successMessages;
 
 /**
  * @class
@@ -38,7 +38,7 @@ class LoginController {
   delete = (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
     redisClient.sadd('token', token);
-    sendSuccessResponse(res, ok, 'Logged out successfully', null, null);
+    sendSuccessResponse(res, ok, loggedOut, null, null);
   }
 }
 
