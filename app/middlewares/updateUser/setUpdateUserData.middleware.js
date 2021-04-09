@@ -30,11 +30,11 @@ const isUserExists = async (id, res) => {
  * @returns {void}
  */
 const dataForUpdatingUser = async (req, res, next) => {
-  const dataToUpdate = req.body;
   const { userId } = req.params;
   const isUserFound = await isUserExists(userId, res);
   if (isUserFound) {
     const whereCondition = { id: userId };
+    const dataToUpdate = req.body;
     req.dataToUpdate = dataToUpdate;
     req.whereCondition = whereCondition;
     next();
