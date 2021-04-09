@@ -12,7 +12,7 @@ describe('Test the login feature', () => {
   it('Will login successfully, and send token on a successful login', (done) => {
     chai
       .request(server)
-      .post('/api/login')
+      .post('/api/session/login')
       .send(userValidLoginData)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
@@ -28,7 +28,7 @@ describe('Test the login feature', () => {
   it('Will not login, send an error message of a failed login', (done) => {
     chai
       .request(server)
-      .post('/api/login')
+      .post('/api/session/login')
       .send(userInvalidEmailLogin)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
