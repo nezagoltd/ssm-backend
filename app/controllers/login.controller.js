@@ -33,7 +33,7 @@ class LoginController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description DELETE: /users/userId
+   * @description DELETE: /logout
    */
   delete = (req, res) => {
     const token = req.headers.authorization.split(' ')[1];
