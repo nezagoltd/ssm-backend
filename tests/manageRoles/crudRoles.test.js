@@ -1,14 +1,14 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../../bin/main';
-import { validRoleData } from '../mocks/role.mock.data';
+import { validRoleData, dataForUpdatingRole } from '../mocks/role.mock.data';
 import { errorMessages, successMessages } from '../../app/helpers/messages.helper';
 import { failureCodes, successCodes } from '../../app/helpers/statusCodes.helper';
 
 chai.use(chaiHttp);
 
-const { roleCreateFail, updateFail } = errorMessages;
-const { roleCreateSuccess, recordFound } = successMessages;
+const { updateFail } = errorMessages;
+const { roleCreateSuccess, recordFound, updateSuccess } = successMessages;
 const { internalServerError } = failureCodes;
 const { ok, created } = successCodes;
 
@@ -64,6 +64,21 @@ describe('Test the manage role feature', () => {
         expect(res.body).to.have.property('error');
         expect(res.body.error).to.be.a('string');
         expect(res.body.error).to.equal(updateFail);
+        done(err);
+      });
+  });
+  it('Will update role successfully', (done) => {
+    chai
+      .request(server)
+      .patch('/api/roles/update/1')
+      .send(dataForUpdatingRole)
+      .end((err, res) => {
+        console.log({ sentData: res.body });
+        expect(res.status).to.equal(ok);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('message');
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.message).to.equal(updateSuccess);
         done(err);
       });
   });

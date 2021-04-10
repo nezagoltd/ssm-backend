@@ -1,2 +1,2 @@
 export const validRoleData = { name: 'dummy role here' };
-export const inValidRoleData = { };
+export const dataForUpdatingRole = { name: 'new dummy data' };
