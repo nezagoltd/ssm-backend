@@ -6,28 +6,34 @@ import { successMessages, errorMessages } from '../helpers/messages.helper';
 const { RoleServiceInstance } = services;
 const { created, ok } = successCodes;
 const { internalServerError, notFound } = failureCodes;
-const { roleCreateSuccess } = successMessages;
+const { roleCreateSuccess, recordFound } = successMessages;
 const { noRecordFound, deleteRecordFail, roleCreateFail } = errorMessages;
 
 /**
  * @class
  */
 class RoleController {
-  // /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description GET: /users
-  //  */
-  // all = async (req, res) => {
-
-  // }
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description GET: /roles
+   */
+  all = async (req, res) => {
+    const whereCondition = req;
+    const gottenRoles = await RoleServiceInstance.getAll(whereCondition);
+    if (gottenRoles.count > 0) {
+      sendSuccessResponse(res, ok, recordFound, null, gottenRoles);
+    } else {
+      sendErrorResponse(res, notFound, noRecordFound);
+    }
+  }
 
   /**
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description POST: /users
+   * @description POST: /roles/create
    */
   create = async (req, res) => {
     const createdRole = await RoleServiceInstance.saveAll(req.body);
