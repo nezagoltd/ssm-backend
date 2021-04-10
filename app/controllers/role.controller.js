@@ -64,7 +64,7 @@ class RoleController {
    * @param {object} res
    * @param {object} next
    * @returns {void}
-   * @description PATCH | GET: /users/userId
+   * @description PATCH: /roles/:userId
    */
   update = async (req, res) => {
     const dataToUpdate = req.body;
