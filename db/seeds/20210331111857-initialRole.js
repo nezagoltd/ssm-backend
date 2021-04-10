@@ -11,6 +11,10 @@ module.exports = {
     await queryInterface.bulkInsert('roles', [{
       name: 'accountant',
     }], {});
+
+    await queryInterface.bulkInsert('roles', [{
+      name: 'daf',
+    }], {});
   },
 
   down: async (queryInterface, Sequelize) => {

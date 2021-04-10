@@ -7,6 +7,7 @@ export const successMessages = {
   loggedOut: 'Logged out successfully',
   updateSuccess: 'Records updated successfully',
   deleteRecordSuccess: 'Record deleted successfully',
+  roleCreateSuccess: 'Role created successfully!',
 };
 export const errorMessages = {
   accountFailedToCreate: 'Sorry!\nAccount was not created, something weird went wrong, please try again!',
@@ -15,4 +16,6 @@ export const errorMessages = {
   loginFail: 'Sorry!\nYou either provided a wrong email or wron password, please try again!',
   noRecordFound: 'No record were found!',
   deleteRecordFail: 'Failed to delete record, try again!',
+  roleCreateFail: 'Role failed to be created, try again!',
+  updateFail: 'Record failed to update, please try again!',
 };
