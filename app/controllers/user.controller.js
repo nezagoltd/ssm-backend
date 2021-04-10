@@ -90,9 +90,10 @@ class UserController {
    * @description GET: /users/:userId
    */
   show = async (req, res) => {
-    let { dataValues: foundUser } = await UserServiceInstance.getBy({ id: req.params.userId });
-    foundUser = _.omit(foundUser, 'password');
+    let foundUser = await UserServiceInstance.getBy({ id: req.params.userId });
     if (foundUser) {
+      foundUser = foundUser.dataValues;
+      foundUser = _.omit(foundUser, 'password');
       sendSuccessResponse(res, ok, recordFound, null, foundUser);
     } else {
       sendErrorResponse(res, notFound, noRecordFound);
