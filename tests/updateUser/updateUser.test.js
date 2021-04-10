@@ -1,22 +1,22 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../../bin/main';
-import { userInvalidEmailLogin, userValidLoginData } from '../mocks/user.mock.data';
-import { errorMessages, successMessages } from '../../app/helpers/messages.helper';
+import { dataForUpdatingUser } from '../mocks/user.mock.data';
+import { successMessages } from '../../app/helpers/messages.helper';
 import { successCodes } from '../../app/helpers/statusCodes.helper';
 
 chai.use(chaiHttp);
 
-const { loginFail } = errorMessages;
-const { loginSuccess } = successMessages;
+// const { loginFail } = errorMessages;
+const { updateSuccess } = successMessages;
 const { ok } = successCodes;
 
-describe('Test the login feature', () => {
-  it('Will login successfully, and send token on a successful login', (done) => {
+describe('Test the update user feature', () => {
+  it('Will update user successfully', (done) => {
     chai
       .request(server)
-      .post('/api/session/login')
-      .send(userValidLoginData)
+      .patch('/api/users/update/1')
+      .send(dataForUpdatingUser)
       .end((err, res) => {
         expect(res.status).to.equal(ok);
         expect(res.body).to.be.an('object');
@@ -24,22 +24,9 @@ describe('Test the login feature', () => {
         expect(res.body).to.have.property('token');
         expect(res.body).to.have.property('data');
         expect(res.body.message).to.be.a('string');
-        expect(res.body.token).to.be.a('string');
+        expect(res.body.token).to.equal(null);
         expect(res.body.data).to.equal(null);
-        expect(res.body.message).to.equal(loginSuccess);
-        done(err);
-      });
-  });
-  it('Will not login, send an error message of a failed login', (done) => {
-    chai
-      .request(server)
-      .post('/api/session/login')
-      .send(userInvalidEmailLogin)
-      .end((err, res) => {
-        expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('error');
-        expect(res.body.error).to.be.a('string');
-        expect(res.body.error).to.equal(loginFail);
+        expect(res.body.message).to.equal(updateSuccess);
         done(err);
       });
   });
