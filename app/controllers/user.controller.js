@@ -118,13 +118,20 @@ class UserController {
     }
   }
 
-  // /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description DELETE: /users/userId
-  //  */
-  // delete = (req, res) => {}
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description DELETE: /users/:userId
+   */
+  delete = async (req, res) => {
+    const deletedUser = await UserServiceInstance.temporaryDelete({ id: req.params.userId });
+    if (deletedUser) {
+      sendSuccessResponse(res, ok, 'Redord deleted successfully', null, deletedUser);
+    } else {
+      sendErrorResponse(res, internalServerError, 'Failed to delete record, try again!');
+    }
+  }
 }
 
 export default UserController;
