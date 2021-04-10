@@ -14,8 +14,8 @@ dotenv.config();
 const { UserServiceInstance } = services;
 const { created, ok } = successCodes;
 const { badRequest, internalServerError, notFound } = failureCodes;
-const { accountCreatedTemporary, recordFound } = successMessages;
-const { accountFailedToCreate, noRecordFound } = errorMessages;
+const { accountCreatedTemporary, recordFound, deleteRecordSuccess } = successMessages;
+const { accountFailedToCreate, noRecordFound, deleteRecordFail } = errorMessages;
 const { APPLICATION_URL } = process.env;
 
 /**
@@ -128,9 +128,9 @@ class UserController {
   delete = async (req, res) => {
     const deletedUser = await UserServiceInstance.temporaryDelete({ id: req.params.userId });
     if (deletedUser) {
-      sendSuccessResponse(res, ok, 'Redord deleted successfully', null, deletedUser);
+      sendSuccessResponse(res, ok, deleteRecordSuccess, null, deletedUser);
     } else {
-      sendErrorResponse(res, internalServerError, 'Failed to delete record, try again!');
+      sendErrorResponse(res, internalServerError, deleteRecordFail);
     }
   }
 }

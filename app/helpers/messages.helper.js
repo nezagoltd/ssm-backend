@@ -6,6 +6,7 @@ export const successMessages = {
   recordFound: 'Record retrieved successfully!',
   loggedOut: 'Logged out successfully',
   updateSuccess: 'Records updated successfully',
+  deleteRecordSuccess: 'Record deleted successfully',
 };
 export const errorMessages = {
   accountFailedToCreate: 'Sorry!\nAccount was not created, something weird went wrong, please try again!',
@@ -13,4 +14,5 @@ export const errorMessages = {
   roleAssignmentFail: 'Sorry!\nAssigning that role to this user has failed, please try again!',
   loginFail: 'Sorry!\nYou either provided a wrong email or wron password, please try again!',
   noRecordFound: 'No record were found!',
+  deleteRecordFail: 'Failed to delete record, try again!',
 };
