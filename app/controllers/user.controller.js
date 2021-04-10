@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-// import _ from 'lodash';
+import _ from 'lodash';
 import services from '../services';
 import { successCodes, failureCodes } from '../helpers/statusCodes.helper';
 import { sendSuccessResponse, sendErrorResponse } from '../helpers/response.helper';
@@ -90,8 +90,8 @@ class UserController {
    * @description GET: /users/:userId
    */
   show = async (req, res) => {
-    const foundUser = await UserServiceInstance.getBy({ id: req.params.userId });
-    // foundUser = _.omit(foundUser, 'password');
+    let { dataValues: foundUser } = await UserServiceInstance.getBy({ id: req.params.userId });
+    foundUser = _.omit(foundUser, 'password');
     if (foundUser) {
       sendSuccessResponse(res, ok, recordFound, null, foundUser);
     } else {
