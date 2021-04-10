@@ -30,4 +30,5 @@ export const userInvalidEmailLogin = {
 export const dataForUpdatingUser = {
   firstName: 'Mugisha',
   email: 'people@me.cdp',
+  password: 'new password',
 };
