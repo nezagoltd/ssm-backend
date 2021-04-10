@@ -6,7 +6,12 @@ import { successMessages, errorMessages } from '../helpers/messages.helper';
 const { RoleServiceInstance } = services;
 const { created, ok } = successCodes;
 const { internalServerError, notFound } = failureCodes;
-const { roleCreateSuccess, recordFound, updateSuccess } = successMessages;
+const {
+  roleCreateSuccess,
+  recordFound,
+  updateSuccess,
+  deleteRecordSuccess,
+} = successMessages;
 const {
   noRecordFound,
   deleteRecordFail,
@@ -73,7 +78,7 @@ class RoleController {
    */
   update = async (req, res) => {
     const dataToUpdate = req.body;
-    const whereCondition = { id: req.params.roleId}
+    const whereCondition = { id: req.params.roleId };
     const roleUpdateInfo = await RoleServiceInstance.updateBy(dataToUpdate, whereCondition);
     if (roleUpdateInfo[0]) {
       sendSuccessResponse(res, ok, updateSuccess, null, roleUpdateInfo);
@@ -82,15 +87,20 @@ class RoleController {
     }
   }
 
-  // /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description DELETE: /users/:userId
-  //  */
-  // delete = async (req, res) => {
-
-  // }
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description DELETE: /roles/:userId
+   */
+  delete = async (req, res) => {
+    const deletedRole = await RoleServiceInstance.temporaryDelete({ id: req.params.userId });
+    if (deletedRole) {
+      sendSuccessResponse(res, ok, deleteRecordSuccess, null, null);
+    } else {
+      sendErrorResponse(res, internalServerError, deleteRecordFail);
+    }
+  }
 }
 
 export default RoleController;
