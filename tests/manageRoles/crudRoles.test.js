@@ -91,7 +91,7 @@ describe('Test the manage role feature', () => {
   it('Will delete a role', (done) => {
     chai
       .request(server)
-      .delete('/api/roles/2')
+      .delete('/api/roles/3')
       .end((err, res) => {
         expect(res.status).to.equal(ok);
         expect(res.body).to.be.an('object');
@@ -108,7 +108,7 @@ describe('Test the manage role feature', () => {
   it('Will not retrieve a role', (done) => {
     chai
       .request(server)
-      .get('/api/roles/all/2')
+      .get('/api/roles/all/3')
       .end((err, res) => {
         expect(res.status).to.equal(notFound);
         expect(res.body).to.be.an('object');
