@@ -361,7 +361,7 @@
       }
     },
     "/roles/create": {
-      "delete": {
+      "post": {
         "summary": "Create role",
         "tags": [
           "Manage role"
