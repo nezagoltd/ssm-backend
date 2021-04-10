@@ -1,14 +1,15 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../../bin/main';
-import { successMessages } from '../../app/helpers/messages.helper';
-import { successCodes } from '../../app/helpers/statusCodes.helper';
+import { errorMessages, successMessages } from '../../app/helpers/messages.helper';
+import { failureCodes, successCodes } from '../../app/helpers/statusCodes.helper';
 
 chai.use(chaiHttp);
 
-// const { noRecordFound } = errorMessages;
+const { noRecordFound } = errorMessages;
 const { recordFound, deleteRecordSuccess } = successMessages;
 const { ok } = successCodes;
+const { notFound } = failureCodes;
 
 describe('Test the manage users feature', () => {
   it('Will retrieve all users', (done) => {
@@ -65,6 +66,19 @@ describe('Test the manage users feature', () => {
         expect(res.body.token).to.equal(null);
         expect(res.body.data).to.equal(null);
         expect(res.body.message).to.equal(deleteRecordSuccess);
+        done(err);
+      });
+  });
+  it('Will not retrieve a user', (done) => {
+    chai
+      .request(server)
+      .get('/api/users/all/2')
+      .end((err, res) => {
+        expect(res.status).to.equal(notFound);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('error');
+        expect(res.body.error).to.be.a('string');
+        expect(res.body.error).to.equal(noRecordFound);
         done(err);
       });
   });
