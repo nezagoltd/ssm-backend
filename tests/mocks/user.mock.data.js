@@ -26,3 +26,9 @@ export const userInvalidEmailLogin = {
   email: 'superadmin',
   password: 111,
 };
+
+export const dataForUpdatingUser = {
+  firstName: 'Mugisha',
+  email: 'people@me.cdp',
+  password: 'new password',
+};

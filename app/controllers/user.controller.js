@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import _ from 'lodash';
 import services from '../services';
 import { successCodes, failureCodes } from '../helpers/statusCodes.helper';
 import { sendSuccessResponse, sendErrorResponse } from '../helpers/response.helper';
@@ -13,8 +14,8 @@ dotenv.config();
 const { UserServiceInstance } = services;
 const { created, ok } = successCodes;
 const { badRequest, internalServerError, notFound } = failureCodes;
-const { accountCreatedTemporary, recordFound } = successMessages;
-const { accountFailedToCreate, noRecordFound } = errorMessages;
+const { accountCreatedTemporary, recordFound, deleteRecordSuccess } = successMessages;
+const { accountFailedToCreate, noRecordFound, deleteRecordFail } = errorMessages;
 const { APPLICATION_URL } = process.env;
 
 /**
@@ -83,12 +84,21 @@ class UserController {
   }
 
   /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description GET: /users/userId
-  //  */
-  // show = (req, res) => {}
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description GET: /users/:userId
+   */
+  show = async (req, res) => {
+    let foundUser = await UserServiceInstance.getBy({ id: req.params.userId });
+    if (foundUser) {
+      foundUser = foundUser.dataValues;
+      foundUser = _.omit(foundUser, 'password');
+      sendSuccessResponse(res, ok, recordFound, null, foundUser);
+    } else {
+      sendErrorResponse(res, notFound, noRecordFound);
+    }
+  }
 
   /**
    * @param {object} req
@@ -100,7 +110,7 @@ class UserController {
   update = async (req, res, next) => {
     const { dataToUpdate, whereCondition } = req;
     const userUpdateInfo = await UserServiceInstance.updateBy(dataToUpdate, whereCondition);
-    if (userUpdateInfo) {
+    if (userUpdateInfo[0]) {
       res.statusCode = ok;
       next();
     } else {
@@ -109,13 +119,20 @@ class UserController {
     }
   }
 
-  // /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description DELETE: /users/userId
-  //  */
-  // delete = (req, res) => {}
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description DELETE: /users/:userId
+   */
+  delete = async (req, res) => {
+    const deletedUser = await UserServiceInstance.temporaryDelete({ id: req.params.userId });
+    if (deletedUser) {
+      sendSuccessResponse(res, ok, deleteRecordSuccess, null, null);
+    } else {
+      sendErrorResponse(res, internalServerError, deleteRecordFail);
+    }
+  }
 }
 
 export default UserController;

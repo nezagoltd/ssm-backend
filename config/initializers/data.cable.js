@@ -101,16 +101,16 @@ class DataCable {
     return updatedData;
   }
 
-  // /**
-  //  * @param {object} whereCondition
-  //  * @returns {string} deleteEntry
-  //  * @method
-  //  * @description it deletes the entry from a model
-  //  */
-  // temporaryDelete = async (whereCondition) => {
-  //   const deletedEntry = await this.model.destroy({ where: whereCondition });
-  //   return deletedEntry;
-  // }
+  /**
+   * @param {object} whereCondition
+   * @returns {string} deleteEntry
+   * @method
+   * @description it deletes the entry from a model, whereCondition should be an object, eg: {id:4}
+   */
+  temporaryDelete = async (whereCondition) => {
+    const deletedEntry = await this.model.destroy({ where: whereCondition });
+    return deletedEntry;
+  }
 }
 
 export default DataCable;
