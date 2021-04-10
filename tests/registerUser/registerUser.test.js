@@ -9,7 +9,7 @@ describe('Test the registration feature', () => {
   it('Will send user data on registration endpoint', (done) => {
     chai
       .request(server)
-      .post('/api/users')
+      .post('/api/users/create')
       .send(userRegMock)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
