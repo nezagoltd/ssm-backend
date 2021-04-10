@@ -43,15 +43,15 @@ class RoleController {
     }
   }
 
-  // /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description GET: /users/:userId
-  //  */
-  // show = async (req, res) => {
-
-  // }
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description GET: /roles/all/:roleId
+   */
+  show = async (req, res) => {
+    const { roleId } = req.params;
+  }
 
   // /**
   //  * @param {object} req
