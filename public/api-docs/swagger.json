@@ -21,7 +21,7 @@
     "application/json"
   ],
   "paths": {
-    "/users": {
+    "/users/create": {
       "post": {
         "summary": "User registration",
         "tags": [
