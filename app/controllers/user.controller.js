@@ -128,7 +128,7 @@ class UserController {
   delete = async (req, res) => {
     const deletedUser = await UserServiceInstance.temporaryDelete({ id: req.params.userId });
     if (deletedUser) {
-      sendSuccessResponse(res, ok, deleteRecordSuccess, null, deletedUser);
+      sendSuccessResponse(res, ok, deleteRecordSuccess, null, null);
     } else {
       sendErrorResponse(res, internalServerError, deleteRecordFail);
     }

@@ -7,10 +7,10 @@ import { successCodes } from '../../app/helpers/statusCodes.helper';
 chai.use(chaiHttp);
 
 // const { noRecordFound } = errorMessages;
-const { recordFound } = successMessages;
+const { recordFound, deleteRecordSuccess } = successMessages;
 const { ok } = successCodes;
 
-describe('Test the read users feature', () => {
+describe('Test the manage users feature', () => {
   it('Will retrieve all users', (done) => {
     chai
       .request(server)
@@ -51,10 +51,10 @@ describe('Test the read users feature', () => {
         done(err);
       });
   });
-  it('Will retrieve only one user', (done) => {
+  it('Will delete one user', (done) => {
     chai
       .request(server)
-      .delete('/api/users/1')
+      .delete('/api/users/2')
       .end((err, res) => {
         expect(res.status).to.equal(ok);
         expect(res.body).to.be.an('object');
@@ -63,8 +63,8 @@ describe('Test the read users feature', () => {
         expect(res.body).to.have.property('data');
         expect(res.body.message).to.be.a('string');
         expect(res.body.token).to.equal(null);
-        expect(res.body.data).to.be.an(null);
-        expect(res.body.message).to.equal(recordFound);
+        expect(res.body.data).to.equal(null);
+        expect(res.body.message).to.equal(deleteRecordSuccess);
         done(err);
       });
   });
