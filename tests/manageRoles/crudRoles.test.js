@@ -7,7 +7,7 @@ import { failureCodes, successCodes } from '../../app/helpers/statusCodes.helper
 
 chai.use(chaiHttp);
 
-const { roleCreateFail } = errorMessages;
+const { roleCreateFail, updateFail } = errorMessages;
 const { roleCreateSuccess, recordFound } = successMessages;
 const { internalServerError } = failureCodes;
 const { ok, created } = successCodes;
@@ -51,6 +51,19 @@ describe('Test the manage role feature', () => {
         expect(res.body.data.rows).to.be.an('array');
         expect(res.body.data.rows.length).to.be.greaterThan(0);
         expect(res.body.message).to.equal(recordFound);
+        done(err);
+      });
+  });
+  it('Will not update role', (done) => {
+    chai
+      .request(server)
+      .patch('/api/roles/update/1')
+      .end((err, res) => {
+        expect(res.status).to.equal(internalServerError);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('error');
+        expect(res.body.error).to.be.a('string');
+        expect(res.body.error).to.equal(updateFail);
         done(err);
       });
   });
