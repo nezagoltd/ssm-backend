@@ -3,13 +3,11 @@ import { successCodes, failureCodes } from '../helpers/statusCodes.helper';
 import { sendSuccessResponse, sendErrorResponse } from '../helpers/response.helper';
 import { successMessages, errorMessages } from '../helpers/messages.helper';
 
-dotenv.config();
-
 const { RoleServiceInstance } = services;
 const { created, ok } = successCodes;
 const { internalServerError, notFound } = failureCodes;
-const {  } = successMessages;
-const { noRecordFound, deleteRecordFail } = errorMessages;
+const { roleCreateSuccess } = successMessages;
+const { noRecordFound, deleteRecordFail, roleCreateFail } = errorMessages;
 
 /**
  * @class
@@ -25,15 +23,20 @@ class RoleController {
 
   // }
 
-  // /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description POST: /users
-  //  */
-  // create = async (req, res) => {
-
-  // }
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description POST: /users
+   */
+  create = async (req, res) => {
+    const createdRole = await RoleServiceInstance.saveAll(req.body);
+    if (createdRole) {
+      sendSuccessResponse(res, created, roleCreateSuccess, null, createdRole);
+    } else {
+      sendErrorResponse(res, internalServerError, roleCreateFail);
+    }
+  }
 
   // /**
   //  * @param {object} req
