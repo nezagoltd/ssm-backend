@@ -382,6 +382,98 @@
           }
         }
       }
+    },
+    "/roles/update/:roleId": {
+      "patch": {
+        "summary": "Update role",
+        "tags": [
+          "Manage role"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
+    },
+    "/roles": {
+      "get": {
+        "summary": "Get all roles",
+        "tags": [
+          "Manage role"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
+    },
+    "/roles/all/:roleId": {
+      "get": {
+        "summary": "Get one role profile",
+        "tags": [
+          "Manage role"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
+    },
+    "/roles/:roleId": {
+      "delete": {
+        "summary": "Delete one role profile",
+        "tags": [
+          "Manage role"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
     }
   }
 }
