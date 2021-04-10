@@ -17,4 +17,5 @@ export const errorMessages = {
   noRecordFound: 'No record were found!',
   deleteRecordFail: 'Failed to delete record, try again!',
   roleCreateFail: 'Role failed to be created, try again!',
+  updateFail: 'Record failed to update, please try again!',
 };

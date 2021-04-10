@@ -6,8 +6,8 @@ import { successMessages, errorMessages } from '../helpers/messages.helper';
 const { RoleServiceInstance } = services;
 const { created, ok } = successCodes;
 const { internalServerError, notFound } = failureCodes;
-const { roleCreateSuccess, recordFound } = successMessages;
-const { noRecordFound, deleteRecordFail, roleCreateFail } = errorMessages;
+const { roleCreateSuccess, recordFound, updateSuccess } = successMessages;
+const { noRecordFound, deleteRecordFail, roleCreateFail, updateFail } = errorMessages;
 
 /**
  * @class
@@ -59,16 +59,23 @@ class RoleController {
     }
   }
 
-  // /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @param {object} next
-  //  * @returns {void}
-  //  * @description PATCH | GET: /users/userId
-  //  */
-  // update = async (req, res, next) => {
-
-  // }
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @param {object} next
+   * @returns {void}
+   * @description PATCH | GET: /users/userId
+   */
+  update = async (req, res) => {
+    const dataToUpdate = req.body;
+    const whereCondition = { id: req.params.roleId}
+    const roleUpdateInfo = await RoleServiceInstance.updateBy(dataToUpdate, whereCondition);
+    if (roleUpdateInfo[0]) {
+      sendSuccessResponse(res, ok, updateSuccess, null, roleUpdateInfo);
+    } else {
+      sendErrorResponse(res, internalServerError, updateFail);
+    }
+  }
 
   // /**
   //  * @param {object} req
