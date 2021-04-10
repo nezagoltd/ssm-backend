@@ -20,8 +20,7 @@ class RoleController {
    * @description GET: /roles
    */
   all = async (req, res) => {
-    const whereCondition = req;
-    const gottenRoles = await RoleServiceInstance.getAll(whereCondition);
+    const gottenRoles = await RoleServiceInstance.getAll();
     if (gottenRoles.count > 0) {
       sendSuccessResponse(res, ok, recordFound, null, gottenRoles);
     } else {

@@ -5,5 +5,6 @@ const roleRouter = Router();
 const { RoleControllerInstance } = controllers;
 
 roleRouter.post('/create', RoleControllerInstance.create);
+roleRouter.get('/all', RoleControllerInstance.all);
 
 export default roleRouter;
