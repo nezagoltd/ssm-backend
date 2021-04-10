@@ -7,9 +7,14 @@ import { failureCodes, successCodes } from '../../app/helpers/statusCodes.helper
 
 chai.use(chaiHttp);
 
-const { updateFail } = errorMessages;
-const { roleCreateSuccess, recordFound, updateSuccess } = successMessages;
-const { internalServerError } = failureCodes;
+const { updateFail, noRecordFound } = errorMessages;
+const {
+  roleCreateSuccess,
+  recordFound,
+  updateSuccess,
+  deleteRecordSuccess,
+} = successMessages;
+const { internalServerError, notFound } = failureCodes;
 const { ok, created } = successCodes;
 
 describe('Test the manage role feature', () => {
@@ -80,6 +85,36 @@ describe('Test the manage role feature', () => {
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
         expect(res.body.message).to.equal(updateSuccess);
+        done(err);
+      });
+  });
+  it('Will delete a role', (done) => {
+    chai
+      .request(server)
+      .delete('/api/roles/2')
+      .end((err, res) => {
+        expect(res.status).to.equal(ok);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('message');
+        expect(res.body).to.have.property('token');
+        expect(res.body).to.have.property('data');
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.token).to.equal(null);
+        expect(res.body.data).to.equal(null);
+        expect(res.body.message).to.equal(deleteRecordSuccess);
+        done(err);
+      });
+  });
+  it('Will not retrieve a role', (done) => {
+    chai
+      .request(server)
+      .get('/api/roles/all/2')
+      .end((err, res) => {
+        expect(res.status).to.equal(notFound);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('error');
+        expect(res.body.error).to.be.a('string');
+        expect(res.body.error).to.equal(noRecordFound);
         done(err);
       });
   });
