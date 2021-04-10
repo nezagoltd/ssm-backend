@@ -34,4 +34,21 @@ describe('Test the read users feature', () => {
         done(err);
       });
   });
+  it('Will retrieve only one user', (done) => {
+    chai
+      .request(server)
+      .get('/api/users/all/1')
+      .end((err, res) => {
+        expect(res.status).to.equal(ok);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('message');
+        expect(res.body).to.have.property('token');
+        expect(res.body).to.have.property('data');
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.token).to.equal(null);
+        expect(res.body.data).to.be.an('object');
+        expect(res.body.message).to.equal(recordFound);
+        done(err);
+      });
+  });
 });
