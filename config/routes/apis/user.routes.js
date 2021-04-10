@@ -14,7 +14,7 @@ const {
   sendResponseAfterUserUpdate,
 } = middlewares;
 
-userRouter.post('/', UserControllerInstance.create);
+userRouter.post('/create', UserControllerInstance.create);
 userRouter.get('/', UserControllerInstance.all);
 userRouter.patch('/update/:userId', setDataForUpdatingUser, UserControllerInstance.update, sendResponseAfterUserUpdate);
 userRouter.get('/all/:userId', UserControllerInstance.show);
