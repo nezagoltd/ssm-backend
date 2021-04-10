@@ -3,8 +3,8 @@ import models from '../models';
 
 const { UserRole, Role } = models;
 /**
- * @description this class user service contains all methods regarding creating user
- * updating user, reading user and deleting a user
+ * @description this class role service contains all methods regarding creating role
+ * updating role, reading role and deleting a role
  */
 class RoleService extends DataCable {
   /**
