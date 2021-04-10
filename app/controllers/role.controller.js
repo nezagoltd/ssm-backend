@@ -91,10 +91,10 @@ class RoleController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description DELETE: /roles/:userId
+   * @description DELETE: /roles/:roleId
    */
   delete = async (req, res) => {
-    const deletedRole = await RoleServiceInstance.temporaryDelete({ id: req.params.userId });
+    const deletedRole = await RoleServiceInstance.temporaryDelete({ id: req.params.roleId });
     if (deletedRole) {
       sendSuccessResponse(res, ok, deleteRecordSuccess, null, null);
     } else {
