@@ -76,7 +76,7 @@ describe('Test the manage role feature', () => {
         expect(res.status).to.equal(ok);
         expect(res.body).to.be.an('object');
         expect(res.body).to.have.property('data');
-        expect(res.body.data).to.be.an('object');
+        expect(res.body.data).to.be.an('array');
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
         expect(res.body.message).to.equal(updateSuccess);
