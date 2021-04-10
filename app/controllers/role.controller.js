@@ -50,7 +50,13 @@ class RoleController {
    * @description GET: /roles/all/:roleId
    */
   show = async (req, res) => {
-    const { roleId } = req.params;
+    let foundRole = await RoleServiceInstance.getBy({ id: req.params.roleId });
+    if (foundRole) {
+      foundRole = foundRole.dataValues;
+      sendSuccessResponse(res, ok, recordFound, null, foundRole);
+    } else {
+      sendErrorResponse(res, notFound, noRecordFound);
+    }
   }
 
   // /**
