@@ -118,4 +118,17 @@ describe('Test the manage role feature', () => {
         done(err);
       });
   });
+  it('Will retrieve a one role', (done) => {
+    chai
+      .request(server)
+      .get('/api/roles/all/1')
+      .end((err, res) => {
+        expect(res.status).to.equal(ok);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('message');
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.message).to.equal(recordFound);
+        done(err);
+      });
+  });
 });
