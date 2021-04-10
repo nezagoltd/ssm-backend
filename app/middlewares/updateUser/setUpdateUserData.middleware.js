@@ -23,6 +23,22 @@ const isUserExists = async (id, res) => {
 };
 
 /**
+ * @description it removes email and data from sent data
+ * @param {object} data
+ * @returns {object} data
+ */
+const removePasswordAndEmail = data => {
+  const { email, password } = data;
+  if (email) {
+    delete data.email;
+  }
+  if (password) {
+    delete data.password;
+  }
+  return data;
+};
+
+/**
  * @description it sets data for approving new user
  * @param {object} req
  * @param {object} res
@@ -34,7 +50,7 @@ const setDataForUpdatingUser = async (req, res, next) => {
   const isUserFound = await isUserExists(userId, res);
   if (isUserFound) {
     const whereCondition = { id: userId };
-    const dataToUpdate = req.body;
+    const dataToUpdate = removePasswordAndEmail(req.body);
     req.dataToUpdate = dataToUpdate;
     req.whereCondition = whereCondition;
     next();
