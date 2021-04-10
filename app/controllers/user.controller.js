@@ -83,12 +83,19 @@ class UserController {
   }
 
   /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description GET: /users/userId
-  //  */
-  // show = (req, res) => {}
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description GET: /users/:userId
+   */
+  show = async (req, res) => {
+    const foundUser = await UserServiceInstance.getBy({ id: req.params.userId });
+    if (foundUser) {
+      sendSuccessResponse(res, ok, recordFound, null, foundUser);
+    } else {
+      sendErrorResponse(res, notFound, noRecordFound);
+    }
+  }
 
   /**
    * @param {object} req
