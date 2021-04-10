@@ -36,7 +36,6 @@ describe('Test the manage role feature', () => {
       .request(server)
       .get('/api/roles')
       .end((err, res) => {
-        console.log({ sentData: res.body });
         expect(res.status).to.equal(ok);
         expect(res.body).to.be.an('object');
         expect(res.body).to.have.property('message');
