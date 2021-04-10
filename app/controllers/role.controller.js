@@ -7,7 +7,12 @@ const { RoleServiceInstance } = services;
 const { created, ok } = successCodes;
 const { internalServerError, notFound } = failureCodes;
 const { roleCreateSuccess, recordFound, updateSuccess } = successMessages;
-const { noRecordFound, deleteRecordFail, roleCreateFail, updateFail } = errorMessages;
+const {
+  noRecordFound,
+  deleteRecordFail,
+  roleCreateFail,
+  updateFail,
+} = errorMessages;
 
 /**
  * @class
