@@ -3,7 +3,7 @@ import { failureCodes, successCodes } from '../../helpers/statusCodes.helper';
 import { successMessages, errorMessages } from '../../helpers/messages.helper';
 
 const { ok } = successCodes;
-const { notFound } = failureCodes;
+const { internalServerError } = failureCodes;
 const { userFailedToUpdate } = errorMessages;
 const { updateSuccess } = successMessages;
 
@@ -19,7 +19,7 @@ const sendResponseAfterUserUpdate = async (req, res) => {
   if (statusCode === ok) {
     sendSuccessResponse(res, ok, updateSuccess, null, null);
   } else {
-    sendErrorResponse(res, notFound, userFailedToUpdate);
+    sendErrorResponse(res, internalServerError, userFailedToUpdate);
   }
 };
 
