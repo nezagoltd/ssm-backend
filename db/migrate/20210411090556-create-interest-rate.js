@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       intervalInMonths: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       rate: {
         type: Sequelize.INTEGER

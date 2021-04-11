@@ -21,7 +21,7 @@ export default (sequelize, DataTypes) => {
   InterestRate.init({
     creatorId: DataTypes.INTEGER,
     creditType: DataTypes.STRING,
-    intervalInMonths: DataTypes.INTEGER,
+    intervalInMonths: DataTypes.STRING,
     rate: DataTypes.INTEGER,
   }, {
     sequelize,
