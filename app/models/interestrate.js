@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   interestRate.init({
     creditType: DataTypes.STRING,
+    intervalInMonths: DataTypes.INTEGER,
     rate: DataTypes.INTEGER
   }, {
     sequelize,

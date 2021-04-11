@@ -11,6 +11,9 @@ module.exports = {
       creditType: {
         type: Sequelize.STRING
       },
+      intervalInMonths: {
+        type: Sequelize.INTEGER
+      },
       rate: {
         type: Sequelize.INTEGER
       },
