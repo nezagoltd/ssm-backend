@@ -88,20 +88,21 @@ class InterestRateController {
     }
   }
 
-  // /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description DELETE: /roles/:roleId
-  //  */
-  // delete = async (req, res) => {
-  //   const deletedRole = await InterestRateServiceInstance.temporaryDelete({ id: req.params.roleId });
-  //   if (deletedRole) {
-  //     sendSuccessResponse(res, ok, deleteRecordSuccess, null, null);
-  //   } else {
-  //     sendErrorResponse(res, internalServerError, deleteRecordFail);
-  //   }
-  // }
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description DELETE: /roles/:roleId
+   */
+  delete = async (req, res) => {
+    const deletedInterestRate = await InterestRateServiceInstance
+      .temporaryDelete({ id: req.params.roleId });
+    if (deletedInterestRate) {
+      sendSuccessResponse(res, ok, deleteRecordSuccess, null, null);
+    } else {
+      sendErrorResponse(res, internalServerError, deleteRecordFail);
+    }
+  }
 }
 
 export default InterestRateController;
