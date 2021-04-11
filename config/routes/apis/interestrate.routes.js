@@ -7,5 +7,6 @@ const { InterestRateControllerInstance } = controllers;
 
 interestRateRouter.get('/', InterestRateControllerInstance.all);
 interestRateRouter.post('/create', InterestRateControllerInstance.create);
+interestRateRouter.get('/all/:interestRateId', InterestRateControllerInstance.show);
 
 export default interestRateRouter;
