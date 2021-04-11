@@ -70,23 +70,23 @@ class InterestRateController {
     }
   }
 
-  // /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @param {object} next
-  //  * @returns {void}
-  //  * @description PATCH: /roles/:userId
-  //  */
-  // update = async (req, res) => {
-  //   const dataToUpdate = req.body;
-  //   const whereCondition = { id: req.params.roleId };
-  //   const roleUpdateInfo = await InterestRateServiceInstance.updateBy(dataToUpdate, whereCondition);
-  //   if (roleUpdateInfo[0]) {
-  //     sendSuccessResponse(res, ok, updateSuccess, null, roleUpdateInfo);
-  //   } else {
-  //     sendErrorResponse(res, internalServerError, updateFail);
-  //   }
-  // }
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @param {object} next
+   * @returns {void}
+   * @description PATCH: /interest-rates/:interestRateId
+   */
+  update = async (req, res) => {
+    const dataToUpdate = req.body;
+    const whereCondition = { id: req.params.interestRateId };
+    const roleUpdateInfo = await InterestRateServiceInstance.updateBy(dataToUpdate, whereCondition);
+    if (roleUpdateInfo[0]) {
+      sendSuccessResponse(res, ok, updateSuccess, null, roleUpdateInfo);
+    } else {
+      sendErrorResponse(res, internalServerError, updateFail);
+    }
+  }
 
   // /**
   //  * @param {object} req
