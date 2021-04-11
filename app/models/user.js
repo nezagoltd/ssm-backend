@@ -17,7 +17,7 @@ export default (sequelize, DataTypes) => {
         onUpdate: 'CASCADE',
       });
       User.hasMany(models.UserRole, {
-        foreignKey: 'userId',
+        foreignKey: 'creatorId',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       });
