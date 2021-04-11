@@ -75,7 +75,7 @@ class InterestRateController {
    * @param {object} res
    * @param {object} next
    * @returns {void}
-   * @description PATCH: /interest-rates/:interestRateId
+   * @description PATCH: /interest-rates/update/:interestRateId
    */
   update = async (req, res) => {
     const dataToUpdate = req.body;
