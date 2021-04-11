@@ -42,7 +42,7 @@ class InterestRateController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description POST: /roles/create
+   * @description POST: /interest-rates/create
    */
   create = async (req, res) => {
     const createdRole = await InterestRateServiceInstance.saveAll(req.body);
@@ -53,21 +53,22 @@ class InterestRateController {
     }
   }
 
-  // /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description GET: /roles/all/:roleId
-  //  */
-  // show = async (req, res) => {
-  //   let foundRole = await InterestRateServiceInstance.getBy({ id: req.params.roleId });
-  //   if (foundRole) {
-  //     foundRole = foundRole.dataValues;
-  //     sendSuccessResponse(res, ok, recordFound, null, foundRole);
-  //   } else {
-  //     sendErrorResponse(res, notFound, noRecordFound);
-  //   }
-  // }
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description GET: /interest-rates/all/:interestRateId
+   */
+  show = async (req, res) => {
+    let foundInterestRate = await InterestRateServiceInstance
+      .getBy({ id: req.params.interestRateId });
+    if (foundInterestRate) {
+      foundInterestRate = foundInterestRate.dataValues;
+      sendSuccessResponse(res, ok, recordFound, null, foundInterestRate);
+    } else {
+      sendErrorResponse(res, notFound, noRecordFound);
+    }
+  }
 
   // /**
   //  * @param {object} req
