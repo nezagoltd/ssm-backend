@@ -92,11 +92,11 @@ class InterestRateController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description DELETE: /roles/:roleId
+   * @description DELETE: /interest-rates/:interestRateId
    */
   delete = async (req, res) => {
     const deletedInterestRate = await InterestRateServiceInstance
-      .temporaryDelete({ id: req.params.roleId });
+      .temporaryDelete({ id: req.params.interestRateId });
     if (deletedInterestRate) {
       sendSuccessResponse(res, ok, deleteRecordSuccess, null, null);
     } else {
