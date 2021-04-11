@@ -15,7 +15,7 @@ const {
 const {
   noRecordFound,
   deleteRecordFail,
-  roleCreateFail,
+  recordCreateFail,
   updateFail,
 } = errorMessages;
 
@@ -38,20 +38,20 @@ class InterestRateController {
     }
   }
 
-  // /**
-  //  * @param {object} req
-  //  * @param {object} res
-  //  * @returns {void}
-  //  * @description POST: /roles/create
-  //  */
-  // create = async (req, res) => {
-  //   const createdRole = await InterestRateServiceInstance.saveAll(req.body);
-  //   if (createdRole) {
-  //     sendSuccessResponse(res, created, roleCreateSuccess, null, createdRole);
-  //   } else {
-  //     sendErrorResponse(res, internalServerError, roleCreateFail);
-  //   }
-  // }
+  /**
+   * @param {object} req
+   * @param {object} res
+   * @returns {void}
+   * @description POST: /roles/create
+   */
+  create = async (req, res) => {
+    const createdRole = await InterestRateServiceInstance.saveAll(req.body);
+    if (createdRole) {
+      sendSuccessResponse(res, created, recordCreateSuccess, null, createdRole);
+    } else {
+      sendErrorResponse(res, internalServerError, recordCreateFail);
+    }
+  }
 
   // /**
   //  * @param {object} req
