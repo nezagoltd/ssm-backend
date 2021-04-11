@@ -6,6 +6,6 @@ const interestRateRouter = Router();
 const { InterestRateControllerInstance } = controllers;
 
 interestRateRouter.get('/', InterestRateControllerInstance.all);
-interestRateRouter.post('/', InterestRateControllerInstance.create);
+interestRateRouter.post('/create', InterestRateControllerInstance.create);
 
 export default interestRateRouter;
