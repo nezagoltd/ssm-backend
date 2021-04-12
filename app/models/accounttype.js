@@ -1,21 +1,26 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+
+export default (sequelize, DataTypes) => {
+  /**
+   * @class
+   */
   class AccountType extends Model {
     /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
+     * @param {object} models
+     * @returns {void}
+     * @description we define associations here
      */
     static associate(models) {
-      // define association here
+      AccountType.belongsTo(models.User, {
+        foreignKey: 'creatorId',
+      });
     }
-  };
+  }
   AccountType.init({
     creatorId: DataTypes.INTEGER,
-    typeName: DataTypes.STRING
+    typeName: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'AccountType',
