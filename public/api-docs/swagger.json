@@ -497,6 +497,29 @@
           }
         }
       }
+    },
+    "/interest-rates/all/:interestRateId": {
+      "get": {
+        "summary": "Get one interest rate",
+        "tags": [
+          "Manage interest rates"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
     }
   }
 }
