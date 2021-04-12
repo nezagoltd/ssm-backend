@@ -27,7 +27,7 @@ class AccountTypeController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description GET: /interest-rates
+   * @description GET: /account-types
    */
   all = async (req, res) => {
     const gottenAccountType = await AccountTypeServiceInstance.getAll();
@@ -42,7 +42,7 @@ class AccountTypeController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description POST: /interest-rates/create
+   * @description POST: /account-types/create
    */
   create = async (req, res) => {
     const createdAccountType = await AccountTypeServiceInstance.saveAll(req.body);
@@ -57,11 +57,11 @@ class AccountTypeController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description GET: /interest-rates/all/:interestRateId
+   * @description GET: /account-types/all/:accountTypeId
    */
   show = async (req, res) => {
     let foundAccountType = await AccountTypeServiceInstance
-      .getBy({ id: req.params.interestRateId });
+      .getBy({ id: req.params.accountTypeId });
     if (foundAccountType) {
       foundAccountType = foundAccountType.dataValues;
       sendSuccessResponse(res, ok, recordFound, null, foundAccountType);
@@ -75,11 +75,11 @@ class AccountTypeController {
    * @param {object} res
    * @param {object} next
    * @returns {void}
-   * @description PATCH: /interest-rates/update/:interestRateId
+   * @description PATCH: /account-types/update/:accountTypeId
    */
   update = async (req, res) => {
     const dataToUpdate = req.body;
-    const whereCondition = { id: req.params.interestRateId };
+    const whereCondition = { id: req.params.accountTypeId };
     const typeUpdateInfo = await AccountTypeServiceInstance.updateBy(dataToUpdate, whereCondition);
     if (typeUpdateInfo[0]) {
       sendSuccessResponse(res, ok, updateSuccess, null, typeUpdateInfo);
@@ -92,11 +92,11 @@ class AccountTypeController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description DELETE: /interest-rates/:interestRateId
+   * @description DELETE: /account-types/:accountTypeId
    */
   delete = async (req, res) => {
     const deletedAccountType = await AccountTypeServiceInstance
-      .temporaryDelete({ id: req.params.interestRateId });
+      .temporaryDelete({ id: req.params.accountTypeId });
     if (deletedAccountType) {
       sendSuccessResponse(res, ok, deleteRecordSuccess, null, null);
     } else {
