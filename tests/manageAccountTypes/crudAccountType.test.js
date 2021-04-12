@@ -17,8 +17,8 @@ const {
 const { internalServerError, notFound } = failureCodes;
 const { ok, created } = successCodes;
 
-describe('Test the manage interestRate feature', () => {
-  it('Will create interestRate successfully', (done) => {
+describe('Test the manage accounttypes feature', () => {
+  it('Will create accounttypes successfully', (done) => {
     chai
       .request(server)
       .post('/api/account-types/create')
@@ -36,7 +36,7 @@ describe('Test the manage interestRate feature', () => {
         done(err);
       });
   });
-  it('Will read all interestRates successfully', (done) => {
+  it('Will read all accounttypess successfully', (done) => {
     chai
       .request(server)
       .get('/api/account-types')
@@ -59,7 +59,7 @@ describe('Test the manage interestRate feature', () => {
         done(err);
       });
   });
-  it('Will retrieve a one interestRate', (done) => {
+  it('Will retrieve a one accounttypes', (done) => {
     chai
       .request(server)
       .get('/api/account-types/all/1')
