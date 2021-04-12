@@ -7,7 +7,7 @@ import { failureCodes, successCodes } from '../../app/helpers/statusCodes.helper
 
 chai.use(chaiHttp);
 
-const { updateFail, noRecordFound } = errorMessages;
+const { updateFail, noRecordFound, deleteRecordFail } = errorMessages;
 const {
   recordCreateSuccess,
   recordFound,
@@ -115,6 +115,19 @@ describe('Test the manage interestRate feature', () => {
         expect(res.body.token).to.equal(null);
         expect(res.body.data).to.equal(null);
         expect(res.body.message).to.equal(deleteRecordSuccess);
+        done(err);
+      });
+  });
+  it('Will not delete an interest rate', (done) => {
+    chai
+      .request(server)
+      .delete('/api/interest-rates/0')
+      .end((err, res) => {
+        expect(res.status).to.equal(internalServerError);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('error');
+        expect(res.body.error).to.be.a('string');
+        expect(res.body.message).to.equal(deleteRecordFail);
         done(err);
       });
   });
