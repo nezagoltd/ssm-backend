@@ -131,4 +131,17 @@ describe('Test the manage interestRate feature', () => {
         done(err);
       });
   });
+  it('Will not read any interestRates', (done) => {
+    chai
+      .request(server)
+      .get('/api/interest-rates')
+      .end((err, res) => {
+        expect(res.status).to.equal(notFound);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('error');
+        expect(res.body.error).to.be.a('string');
+        expect(res.body.error).to.equal(noRecordFound);
+        done(err);
+      });
+  });
 });
