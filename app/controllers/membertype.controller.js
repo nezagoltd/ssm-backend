@@ -57,11 +57,11 @@ class MemberTypeController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description GET: /member-types/all/:accountTypeId
+   * @description GET: /member-types/all/:memberTypeId
    */
   show = async (req, res) => {
     let foundAccountType = await MemberTypeServiceInstance
-      .getBy({ id: req.params.accountTypeId });
+      .getBy({ id: req.params.memberTypeId });
     if (foundAccountType) {
       foundAccountType = foundAccountType.dataValues;
       sendSuccessResponse(res, ok, recordFound, null, foundAccountType);
@@ -75,11 +75,11 @@ class MemberTypeController {
    * @param {object} res
    * @param {object} next
    * @returns {void}
-   * @description PATCH: /member-types/update/:accountTypeId
+   * @description PATCH: /member-types/update/:memberTypeId
    */
   update = async (req, res) => {
     const dataToUpdate = req.body;
-    const whereCondition = { id: req.params.accountTypeId };
+    const whereCondition = { id: req.params.memberTypeId };
     const typeUpdateInfo = await MemberTypeServiceInstance.updateBy(dataToUpdate, whereCondition);
     if (typeUpdateInfo[0]) {
       sendSuccessResponse(res, ok, updateSuccess, null, typeUpdateInfo);
@@ -92,11 +92,11 @@ class MemberTypeController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description DELETE: /member-types/:accountTypeId
+   * @description DELETE: /member-types/:memberTypeId
    */
   delete = async (req, res) => {
     const deletedAccountType = await MemberTypeServiceInstance
-      .temporaryDelete({ id: req.params.accountTypeId });
+      .temporaryDelete({ id: req.params.memberTypeId });
     if (deletedAccountType) {
       sendSuccessResponse(res, ok, deleteRecordSuccess, null, null);
     } else {
