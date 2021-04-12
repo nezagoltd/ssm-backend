@@ -589,6 +589,121 @@
           }
         }
       }
+    },
+    "/account-types/create": {
+      "post": {
+        "summary": "Create one account type",
+        "tags": [
+          "Manage account types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
+    },
+    "/account-types": {
+      "get": {
+        "summary": "Get all account types",
+        "tags": [
+          "Manage account types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
+    },
+    "/account-types/all/:accountTypeId": {
+      "get": {
+        "summary": "Get one account type",
+        "tags": [
+          "Manage account types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
+    },
+    "/account-types/update/:accountTypeId": {
+      "patch": {
+        "summary": "Update one account type",
+        "tags": [
+          "Manage account types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
+    },
+    "/account-types/:accountTypeId": {
+      "delete": {
+        "summary": "Delete one account type",
+        "tags": [
+          "Manage account types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
     }
   }
 }
