@@ -21,6 +21,11 @@ export default (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       });
+      User.hasMany(models.AccountType, {
+        foreignKey: 'creatorId',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      });
     }
   }
   User.init({
