@@ -704,6 +704,121 @@
           }
         }
       }
+    },
+    "/member-types/create": {
+      "post": {
+        "summary": "Create one member type",
+        "tags": [
+          "Manage member types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
+    },
+    "/member-types": {
+      "get": {
+        "summary": "Get all member types",
+        "tags": [
+          "Manage member types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
+    },
+    "/member-types/all/:memberTypeId": {
+      "get": {
+        "summary": "Get one member type",
+        "tags": [
+          "Manage member types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
+    },
+    "/member-types/update/:memberTypeId": {
+      "patch": {
+        "summary": "Update one member type",
+        "tags": [
+          "Manage member types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
+    },
+    "/member-types/:memberTypeId": {
+      "delete": {
+        "summary": "Delete one member type",
+        "tags": [
+          "Manage member types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "This is how the response looks like when logout is successful",
+            "schema": {
+              "$ref": "#/login-definition/login-response-real-data"
+            }
+          }
+        }
+      }
     }
   }
 }
