@@ -42,7 +42,7 @@ class MemberTypeController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description POST: /account-types/create
+   * @description POST: /member-types/create
    */
   create = async (req, res) => {
     const createdMemberType = await MemberTypeServiceInstance.saveAll(req.body);
@@ -57,7 +57,7 @@ class MemberTypeController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description GET: /account-types/all/:accountTypeId
+   * @description GET: /member-types/all/:accountTypeId
    */
   show = async (req, res) => {
     let foundAccountType = await MemberTypeServiceInstance
@@ -75,7 +75,7 @@ class MemberTypeController {
    * @param {object} res
    * @param {object} next
    * @returns {void}
-   * @description PATCH: /account-types/update/:accountTypeId
+   * @description PATCH: /member-types/update/:accountTypeId
    */
   update = async (req, res) => {
     const dataToUpdate = req.body;
@@ -92,7 +92,7 @@ class MemberTypeController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description DELETE: /account-types/:accountTypeId
+   * @description DELETE: /member-types/:accountTypeId
    */
   delete = async (req, res) => {
     const deletedAccountType = await MemberTypeServiceInstance
