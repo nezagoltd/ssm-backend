@@ -24,7 +24,7 @@ export default (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'AccountType',
-    tableName: 'AccountTypes',
+    tableName: 'accountTypes',
     paranoid: true,
   });
   return AccountType;
