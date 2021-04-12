@@ -1,7 +1,7 @@
-export const interestRateValidData = {
+export const accountTypeValidData = {
   typeName: 'central account',
   creatorId: 1,
 };
-export const interestRateUpdatingData = {
+export const accountTypeUpdatingData = {
   typeName: 'central saving account',
 };
