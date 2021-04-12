@@ -127,7 +127,7 @@ describe('Test the manage interestRate feature', () => {
         expect(res.body).to.be.an('object');
         expect(res.body).to.have.property('error');
         expect(res.body.error).to.be.a('string');
-        expect(res.body.message).to.equal(deleteRecordFail);
+        expect(res.body.error).to.equal(deleteRecordFail);
         done(err);
       });
   });
