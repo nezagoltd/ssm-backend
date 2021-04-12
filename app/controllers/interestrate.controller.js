@@ -80,9 +80,9 @@ class InterestRateController {
   update = async (req, res) => {
     const dataToUpdate = req.body;
     const whereCondition = { id: req.params.interestRateId };
-    const roleUpdateInfo = await InterestRateServiceInstance.updateBy(dataToUpdate, whereCondition);
-    if (roleUpdateInfo[0]) {
-      sendSuccessResponse(res, ok, updateSuccess, null, roleUpdateInfo);
+    const rateUpdateInfo = await InterestRateServiceInstance.updateBy(dataToUpdate, whereCondition);
+    if (rateUpdateInfo[0]) {
+      sendSuccessResponse(res, ok, updateSuccess, null, rateUpdateInfo);
     } else {
       sendErrorResponse(res, internalServerError, updateFail);
     }
