@@ -3,7 +3,7 @@ import { successCodes, failureCodes } from '../helpers/statusCodes.helper';
 import { sendSuccessResponse, sendErrorResponse } from '../helpers/response.helper';
 import { successMessages, errorMessages } from '../helpers/messages.helper';
 
-const { AccountTypeServiceInstance } = services;
+const { MemberTypeServiceInstance } = services;
 const { created, ok } = successCodes;
 const { internalServerError, notFound } = failureCodes;
 const {
@@ -30,7 +30,7 @@ class MemberTypeController {
    * @description GET: /member-types
    */
   all = async (req, res) => {
-    const gottenMemberType = await AccountTypeServiceInstance.getAll();
+    const gottenMemberType = await MemberTypeServiceInstance.getAll();
     if (gottenMemberType.count > 0) {
       sendSuccessResponse(res, ok, recordFound, null, gottenMemberType);
     } else {
@@ -45,7 +45,7 @@ class MemberTypeController {
    * @description POST: /account-types/create
    */
   create = async (req, res) => {
-    const createdMemberType = await AccountTypeServiceInstance.saveAll(req.body);
+    const createdMemberType = await MemberTypeServiceInstance.saveAll(req.body);
     if (createdMemberType) {
       sendSuccessResponse(res, created, recordCreateSuccess, null, createdMemberType);
     } else {
@@ -60,7 +60,7 @@ class MemberTypeController {
    * @description GET: /account-types/all/:accountTypeId
    */
   show = async (req, res) => {
-    let foundAccountType = await AccountTypeServiceInstance
+    let foundAccountType = await MemberTypeServiceInstance
       .getBy({ id: req.params.accountTypeId });
     if (foundAccountType) {
       foundAccountType = foundAccountType.dataValues;
@@ -80,7 +80,7 @@ class MemberTypeController {
   update = async (req, res) => {
     const dataToUpdate = req.body;
     const whereCondition = { id: req.params.accountTypeId };
-    const typeUpdateInfo = await AccountTypeServiceInstance.updateBy(dataToUpdate, whereCondition);
+    const typeUpdateInfo = await MemberTypeServiceInstance.updateBy(dataToUpdate, whereCondition);
     if (typeUpdateInfo[0]) {
       sendSuccessResponse(res, ok, updateSuccess, null, typeUpdateInfo);
     } else {
@@ -95,7 +95,7 @@ class MemberTypeController {
    * @description DELETE: /account-types/:accountTypeId
    */
   delete = async (req, res) => {
-    const deletedAccountType = await AccountTypeServiceInstance
+    const deletedAccountType = await MemberTypeServiceInstance
       .temporaryDelete({ id: req.params.accountTypeId });
     if (deletedAccountType) {
       sendSuccessResponse(res, ok, deleteRecordSuccess, null, null);
