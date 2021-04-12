@@ -60,11 +60,11 @@ class MemberTypeController {
    * @description GET: /member-types/all/:memberTypeId
    */
   show = async (req, res) => {
-    let foundAccountType = await MemberTypeServiceInstance
+    let foundMemberType = await MemberTypeServiceInstance
       .getBy({ id: req.params.memberTypeId });
-    if (foundAccountType) {
-      foundAccountType = foundAccountType.dataValues;
-      sendSuccessResponse(res, ok, recordFound, null, foundAccountType);
+    if (foundMemberType) {
+      foundMemberType = foundMemberType.dataValues;
+      sendSuccessResponse(res, ok, recordFound, null, foundMemberType);
     } else {
       sendErrorResponse(res, notFound, noRecordFound);
     }
@@ -95,9 +95,9 @@ class MemberTypeController {
    * @description DELETE: /member-types/:memberTypeId
    */
   delete = async (req, res) => {
-    const deletedAccountType = await MemberTypeServiceInstance
+    const deletedMemberType = await MemberTypeServiceInstance
       .temporaryDelete({ id: req.params.memberTypeId });
-    if (deletedAccountType) {
+    if (deletedMemberType) {
       sendSuccessResponse(res, ok, deleteRecordSuccess, null, null);
     } else {
       sendErrorResponse(res, internalServerError, deleteRecordFail);
