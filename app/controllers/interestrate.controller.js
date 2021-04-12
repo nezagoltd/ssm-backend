@@ -45,9 +45,9 @@ class InterestRateController {
    * @description POST: /interest-rates/create
    */
   create = async (req, res) => {
-    const createdRole = await InterestRateServiceInstance.saveAll(req.body);
-    if (createdRole) {
-      sendSuccessResponse(res, created, recordCreateSuccess, null, createdRole);
+    const createdRate = await InterestRateServiceInstance.saveAll(req.body);
+    if (createdRate) {
+      sendSuccessResponse(res, created, recordCreateSuccess, null, createdRate);
     } else {
       sendErrorResponse(res, internalServerError, recordCreateFail);
     }
