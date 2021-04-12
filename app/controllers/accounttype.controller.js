@@ -3,7 +3,7 @@ import { successCodes, failureCodes } from '../helpers/statusCodes.helper';
 import { sendSuccessResponse, sendErrorResponse } from '../helpers/response.helper';
 import { successMessages, errorMessages } from '../helpers/messages.helper';
 
-const { InterestRateServiceInstance } = services;
+const { AccountTypeServiceInstance } = services;
 const { created, ok } = successCodes;
 const { internalServerError, notFound } = failureCodes;
 const {
@@ -22,17 +22,17 @@ const {
 /**
  * @class
  */
-class InterestRateController {
+class AccountTypeController {
   /**
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description GET: /interest-rates
+   * @description GET: /account-types
    */
   all = async (req, res) => {
-    const gottenInterestRates = await InterestRateServiceInstance.getAll();
-    if (gottenInterestRates.count > 0) {
-      sendSuccessResponse(res, ok, recordFound, null, gottenInterestRates);
+    const gottenAccountType = await AccountTypeServiceInstance.getAll();
+    if (gottenAccountType.count > 0) {
+      sendSuccessResponse(res, ok, recordFound, null, gottenAccountType);
     } else {
       sendErrorResponse(res, notFound, noRecordFound);
     }
@@ -42,12 +42,12 @@ class InterestRateController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description POST: /interest-rates/create
+   * @description POST: /account-types/create
    */
   create = async (req, res) => {
-    const createdRate = await InterestRateServiceInstance.saveAll(req.body);
-    if (createdRate) {
-      sendSuccessResponse(res, created, recordCreateSuccess, null, createdRate);
+    const createdAccountType = await AccountTypeServiceInstance.saveAll(req.body);
+    if (createdAccountType) {
+      sendSuccessResponse(res, created, recordCreateSuccess, null, createdAccountType);
     } else {
       sendErrorResponse(res, internalServerError, recordCreateFail);
     }
@@ -57,14 +57,14 @@ class InterestRateController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description GET: /interest-rates/all/:interestRateId
+   * @description GET: /account-types/all/:accountTypeId
    */
   show = async (req, res) => {
-    let foundInterestRate = await InterestRateServiceInstance
-      .getBy({ id: req.params.interestRateId });
-    if (foundInterestRate) {
-      foundInterestRate = foundInterestRate.dataValues;
-      sendSuccessResponse(res, ok, recordFound, null, foundInterestRate);
+    let foundAccountType = await AccountTypeServiceInstance
+      .getBy({ id: req.params.accountTypeId });
+    if (foundAccountType) {
+      foundAccountType = foundAccountType.dataValues;
+      sendSuccessResponse(res, ok, recordFound, null, foundAccountType);
     } else {
       sendErrorResponse(res, notFound, noRecordFound);
     }
@@ -75,14 +75,14 @@ class InterestRateController {
    * @param {object} res
    * @param {object} next
    * @returns {void}
-   * @description PATCH: /interest-rates/update/:interestRateId
+   * @description PATCH: /account-types/update/:accountTypeId
    */
   update = async (req, res) => {
     const dataToUpdate = req.body;
-    const whereCondition = { id: req.params.interestRateId };
-    const rateUpdateInfo = await InterestRateServiceInstance.updateBy(dataToUpdate, whereCondition);
-    if (rateUpdateInfo[0]) {
-      sendSuccessResponse(res, ok, updateSuccess, null, rateUpdateInfo);
+    const whereCondition = { id: req.params.accountTypeId };
+    const typeUpdateInfo = await AccountTypeServiceInstance.updateBy(dataToUpdate, whereCondition);
+    if (typeUpdateInfo[0]) {
+      sendSuccessResponse(res, ok, updateSuccess, null, typeUpdateInfo);
     } else {
       sendErrorResponse(res, internalServerError, updateFail);
     }
@@ -92,12 +92,12 @@ class InterestRateController {
    * @param {object} req
    * @param {object} res
    * @returns {void}
-   * @description DELETE: /interest-rates/:interestRateId
+   * @description DELETE: /account-types/:accountTypeId
    */
   delete = async (req, res) => {
-    const deletedInterestRate = await InterestRateServiceInstance
-      .temporaryDelete({ id: req.params.interestRateId });
-    if (deletedInterestRate) {
+    const deletedAccountType = await AccountTypeServiceInstance
+      .temporaryDelete({ id: req.params.accountTypeId });
+    if (deletedAccountType) {
       sendSuccessResponse(res, ok, deleteRecordSuccess, null, null);
     } else {
       sendErrorResponse(res, internalServerError, deleteRecordFail);
@@ -105,4 +105,4 @@ class InterestRateController {
   }
 }
 
-export default InterestRateController;
+export default AccountTypeController;
