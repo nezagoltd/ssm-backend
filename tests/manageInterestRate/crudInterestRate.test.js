@@ -59,19 +59,19 @@ describe('Test the manage interestRate feature', () => {
         done(err);
       });
   });
-  // it('Will not update role', (done) => {
-  //   chai
-  //     .request(server)
-  //     .patch('/api/roles/update/1')
-  //     .end((err, res) => {
-  //       expect(res.status).to.equal(internalServerError);
-  //       expect(res.body).to.be.an('object');
-  //       expect(res.body).to.have.property('error');
-  //       expect(res.body.error).to.be.a('string');
-  //       expect(res.body.error).to.equal(updateFail);
-  //       done(err);
-  //     });
-  // });
+  it('Will not update an interest rate', (done) => {
+    chai
+      .request(server)
+      .patch('/api/interest-rates/update/0')
+      .end((err, res) => {
+        expect(res.status).to.equal(internalServerError);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('error');
+        expect(res.body.error).to.be.a('string');
+        expect(res.body.error).to.equal(updateFail);
+        done(err);
+      });
+  });
   // it('Will update role successfully', (done) => {
   //   chai
   //     .request(server)
