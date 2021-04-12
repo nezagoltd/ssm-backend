@@ -22,7 +22,7 @@ const {
 /**
  * @class
  */
-class InterestRateController {
+class AccountTypeController {
   /**
    * @param {object} req
    * @param {object} res
@@ -105,4 +105,4 @@ class InterestRateController {
   }
 }
 
-export default InterestRateController;
+export default AccountTypeController;
