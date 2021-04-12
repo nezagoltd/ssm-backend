@@ -3,7 +3,7 @@ import UserRoleService from './userrole.service';
 import RoleService from './role.service';
 import InterestRateService from './interestrate.service';
 import AccountTypeService from './accounttype.service';
-import MembertTypeService from './memberType.service';
+import MembertTypeService from './membertype.service';
 
 const UserServiceInstance = new UserService();
 const UserRoleServiceInstance = new UserRoleService();
