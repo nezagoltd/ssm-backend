@@ -36,29 +36,29 @@ describe('Test the manage interestRate feature', () => {
         done(err);
       });
   });
-  // it('Will read all roles successfully', (done) => {
-  //   chai
-  //     .request(server)
-  //     .get('/api/roles')
-  //     .end((err, res) => {
-  //       expect(res.status).to.equal(ok);
-  //       expect(res.body).to.be.an('object');
-  //       expect(res.body).to.have.property('message');
-  //       expect(res.body).to.have.property('token');
-  //       expect(res.body).to.have.property('data');
-  //       expect(res.body.message).to.be.a('string');
-  //       expect(res.body.token).to.equal(null);
-  //       expect(res.body.data).to.be.an('object');
-  //       expect(res.body.data).to.have.property('count');
-  //       expect(res.body.data).to.have.property('rows');
-  //       expect(res.body.data.count).to.be.a('number');
-  //       expect(res.body.data.count).to.be.greaterThan(0);
-  //       expect(res.body.data.rows).to.be.an('array');
-  //       expect(res.body.data.rows.length).to.be.greaterThan(0);
-  //       expect(res.body.message).to.equal(recordFound);
-  //       done(err);
-  //     });
-  // });
+  it('Will read all interestRates successfully', (done) => {
+    chai
+      .request(server)
+      .get('/api/interest-rates')
+      .end((err, res) => {
+        expect(res.status).to.equal(ok);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('message');
+        expect(res.body).to.have.property('token');
+        expect(res.body).to.have.property('data');
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.token).to.equal(null);
+        expect(res.body.data).to.be.an('object');
+        expect(res.body.data).to.have.property('count');
+        expect(res.body.data).to.have.property('rows');
+        expect(res.body.data.count).to.be.a('number');
+        expect(res.body.data.count).to.be.greaterThan(0);
+        expect(res.body.data.rows).to.be.an('array');
+        expect(res.body.data.rows.length).to.be.greaterThan(0);
+        expect(res.body.message).to.equal(recordFound);
+        done(err);
+      });
+  });
   // it('Will not update role', (done) => {
   //   chai
   //     .request(server)
