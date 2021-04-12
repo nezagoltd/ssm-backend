@@ -21,6 +21,7 @@ module.exports = {
       creditType: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       intervalInMonths: {
         type: Sequelize.STRING,
