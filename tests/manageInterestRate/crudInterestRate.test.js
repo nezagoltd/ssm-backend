@@ -1,7 +1,7 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../../bin/main';
-import { interestRateValidData } from './interestRate.mock.data';
+import { interestRateValidData, interestRateUpdatingData } from './interestRate.mock.data';
 import { errorMessages, successMessages } from '../../app/helpers/messages.helper';
 import { failureCodes, successCodes } from '../../app/helpers/statusCodes.helper';
 
@@ -59,6 +59,19 @@ describe('Test the manage interestRate feature', () => {
         done(err);
       });
   });
+  it('Will retrieve a one interestRate', (done) => {
+    chai
+      .request(server)
+      .get('/api/interest-rates/all/1')
+      .end((err, res) => {
+        expect(res.status).to.equal(ok);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('message');
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.message).to.equal(recordFound);
+        done(err);
+      });
+  });
   it('Will not update an interest rate', (done) => {
     chai
       .request(server)
@@ -72,63 +85,50 @@ describe('Test the manage interestRate feature', () => {
         done(err);
       });
   });
-  // it('Will update role successfully', (done) => {
-  //   chai
-  //     .request(server)
-  //     .patch('/api/roles/update/1')
-  //     .send(dataForUpdatingRole)
-  //     .end((err, res) => {
-  //       expect(res.status).to.equal(ok);
-  //       expect(res.body).to.be.an('object');
-  //       expect(res.body).to.have.property('data');
-  //       expect(res.body.data).to.be.an('array');
-  //       expect(res.body).to.have.property('message');
-  //       expect(res.body.message).to.be.a('string');
-  //       expect(res.body.message).to.equal(updateSuccess);
-  //       done(err);
-  //     });
-  // });
-  // it('Will delete a role', (done) => {
-  //   chai
-  //     .request(server)
-  //     .delete('/api/roles/3')
-  //     .end((err, res) => {
-  //       expect(res.status).to.equal(ok);
-  //       expect(res.body).to.be.an('object');
-  //       expect(res.body).to.have.property('message');
-  //       expect(res.body).to.have.property('token');
-  //       expect(res.body).to.have.property('data');
-  //       expect(res.body.message).to.be.a('string');
-  //       expect(res.body.token).to.equal(null);
-  //       expect(res.body.data).to.equal(null);
-  //       expect(res.body.message).to.equal(deleteRecordSuccess);
-  //       done(err);
-  //     });
-  // });
-  // it('Will not retrieve a role', (done) => {
-  //   chai
-  //     .request(server)
-  //     .get('/api/roles/all/3')
-  //     .end((err, res) => {
-  //       expect(res.status).to.equal(notFound);
-  //       expect(res.body).to.be.an('object');
-  //       expect(res.body).to.have.property('error');
-  //       expect(res.body.error).to.be.a('string');
-  //       expect(res.body.error).to.equal(noRecordFound);
-  //       done(err);
-  //     });
-  // });
-  // it('Will retrieve a one role', (done) => {
-  //   chai
-  //     .request(server)
-  //     .get('/api/roles/all/1')
-  //     .end((err, res) => {
-  //       expect(res.status).to.equal(ok);
-  //       expect(res.body).to.be.an('object');
-  //       expect(res.body).to.have.property('message');
-  //       expect(res.body.message).to.be.a('string');
-  //       expect(res.body.message).to.equal(recordFound);
-  //       done(err);
-  //     });
-  // });
+  it('Will update interestRate successfully', (done) => {
+    chai
+      .request(server)
+      .patch('/api/interest-rates/update/1')
+      .send(interestRateUpdatingData)
+      .end((err, res) => {
+        expect(res.status).to.equal(ok);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('data');
+        expect(res.body.data).to.be.an('array');
+        expect(res.body).to.have.property('message');
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.message).to.equal(updateSuccess);
+        done(err);
+      });
+  });
+  it('Will delete an interest rate', (done) => {
+    chai
+      .request(server)
+      .delete('/api/interest-rates/1')
+      .end((err, res) => {
+        expect(res.status).to.equal(ok);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('message');
+        expect(res.body).to.have.property('token');
+        expect(res.body).to.have.property('data');
+        expect(res.body.message).to.be.a('string');
+        expect(res.body.token).to.equal(null);
+        expect(res.body.data).to.equal(null);
+        expect(res.body.message).to.equal(deleteRecordSuccess);
+        done(err);
+      });
+  });
+  it('Will not retrieve an interestRate', (done) => {
+    chai
+      .request(server)
+      .get('/api/interest-rates/all/3')
+      .end((err, res) => {
+        expect(res.status).to.equal(notFound);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('error');
+        expect(res.body.error).to.be.a('string');
+        expect(res.body.error).to.equal(noRecordFound);
+        done(err);
+      });
+  });
 });
