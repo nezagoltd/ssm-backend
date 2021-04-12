@@ -24,6 +24,8 @@ export default (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'MemberType',
+    tableName: 'memberTypes',
+    paranoid: true,
   });
   return MemberType;
 };
